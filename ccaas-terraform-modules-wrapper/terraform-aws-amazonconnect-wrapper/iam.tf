@@ -1,6 +1,6 @@
 module "connect_federation_policy" {
   count       = var.sso_integration ? 1 : 0
-  source      = "git@github.com:CloverHealth/ccaas-terraform-modules.git//terraform-aws-iam/modules/iam-policy?ref=v1.0.2"
+  source      = "../../ccaas-terraform-modules/terraform-aws-iam/modules/iam-policy?ref=v1.0.2"
   name        = "${local.amazon_connect_iam_name}-federation-pol"
   description = "IAM policy to get federation token and list for Amazon Connect instance"
   policy      = data.aws_iam_policy_document.connect_federation_policy_document.json
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "connect_federation_policy_document" {
 
 module "connect_azure_ad_policy" {
   count       = var.sso_integration ? 1 : 0
-  source      = "git@github.com:CloverHealth/ccaas-terraform-modules.git//terraform-aws-iam/modules/iam-policy?ref=v1.0.2"
+  source      = "../../ccaas-terraform-modules/terraform-aws-iam/modules/iam-policy?ref=v1.0.2"
   name        = "${local.amazon_connect_iam_name}-azure-pol"
   description = "Azure AD IAM access policy"
   policy      = data.aws_iam_policy_document.connect_azure_ad_policy_document.json
