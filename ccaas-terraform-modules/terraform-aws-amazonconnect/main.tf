@@ -241,11 +241,8 @@ resource "aws_connect_queue" "this" {
   )
 
   # Conditionally apply lifecycle rule based on variable
-  dynamic "lifecycle" {
-    for_each = var.ignore_quick_connect_ids_changes ? [1] : []
-    content {
-      ignore_changes = [quick_connect_ids]
-    }
+  lifecycle {
+    ignore_changes = [quick_connect_ids]
   }
 }
 
@@ -301,11 +298,8 @@ resource "aws_connect_quick_connect" "this" {
   )
 
   # Conditionally apply lifecycle rule based on variable
-  dynamic "lifecycle" {
-    for_each = var.ignore_quick_connect_ids_changes ? [1] : []
-    content {
-      ignore_changes = [quick_connect_config]
-    }
+  lifecycle {
+    ignore_changes = [quick_connect_config]
   }
 }
 

@@ -37,7 +37,7 @@ module "amazon_connect" {
   users = var.users
 
   # # New variable to control lifecycle rule
-  ignore_quick_connect_ids_changes = var.ignore_quick_connect_ids_changes
+  # ignore_quick_connect_ids_changes = var.ignore_quick_connect_ids_changes
 
   # # Tags
   tags = local.tags
