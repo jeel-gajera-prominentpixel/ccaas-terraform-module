@@ -1,5 +1,5 @@
 module "iam_user" {
-  source                        = "../../jb-ccaas-terraform-modules/terraform-aws-iam/modules/iam-user"
+  source                        = "../../../jb-ccaas-terraform-modules/terraform-aws-iam/modules/iam-user"
   name                          = var.name == "" ? local.iam_user : var.name
   create_user                   = var.create_user
   create_iam_user_login_profile = var.create_iam_user_login_profile

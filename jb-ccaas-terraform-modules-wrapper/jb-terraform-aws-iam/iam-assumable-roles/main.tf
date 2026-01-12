@@ -1,5 +1,5 @@
 module "iam_role" {
-  source = "../../jb-ccaas-terraform-modules/terraform-aws-iam/modules/iam-assumable-role"
+  source = "../../../jb-ccaas-terraform-modules/terraform-aws-iam/modules/iam-assumable-role"
 
   role_name                         = var.name == "" ? local.iam_role : var.name
   admin_role_policy_arn             = var.admin_role_policy_arn
