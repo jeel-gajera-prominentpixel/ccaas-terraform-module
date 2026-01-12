@@ -1,5 +1,5 @@
 module "tags" {
-  source = "git@gitlab.com:smb-infra/shared-terraform-modules.git//terraform-aws-tags?ref=main"
+  source = "../ccaas-terraform-modules/terraform-aws-tags"
   # application    = var.application
   company     = var.company
   environment = var.environment
