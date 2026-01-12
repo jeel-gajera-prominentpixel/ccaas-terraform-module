@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket
+  Environment:
+    Type: String
+    Description: Environment name
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+
+Outputs:
+  BucketName:
+    Description: Name of the created bucket
+    Value: !Ref S3Bucket
+  BucketArn:
+    Description: ARN of the created bucket
+    Value: !GetAtt S3Bucket.Arn

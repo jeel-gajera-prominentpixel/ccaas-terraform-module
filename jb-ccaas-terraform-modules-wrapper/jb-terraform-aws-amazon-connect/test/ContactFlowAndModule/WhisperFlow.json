@@ -1,0 +1,1201 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "afa85f6f-2b9f-4f26-8b99-bbaec4eb8ad0",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": -1325.6,
+      "y": -178.4
+    },
+    "ActionMetadata": {
+      "Send Email Alert": {
+        "position": {
+          "x": 2647.2,
+          "y": -329.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "useDynamic": true
+          },
+          "LambdaInvocationAttributes": {
+            "CivicAddress": {
+              "useDynamic": true
+            },
+            "agent_did_number": {
+              "useDynamic": true
+            },
+            "getEmailSubject": {
+              "useDynamic": true
+            },
+            "getEmailSender": {
+              "useDynamic": true
+            },
+            "agentEmail": {
+              "useDynamic": true
+            },
+            "location_name": {
+              "useDynamic": true
+            },
+            "agentName": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "CivicAddress": true,
+          "agent_did_number": true,
+          "getEmailSubject": true,
+          "getEmailSender": true,
+          "agentEmail": true,
+          "location_name": true,
+          "agentName": true
+        },
+        "useDynamic": true
+      },
+      "USE1 Get attributes": {
+        "position": {
+          "x": -246.4,
+          "y": -204
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaInvocationAttributes": {
+            "did": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "did": true
+        }
+      },
+      "Check Region": {
+        "position": {
+          "x": -513.6,
+          "y": -203.2
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "daf92f7b-7c89-4f41-a487-8b3e7db7e8af",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "us-east-1"
+          }
+        ]
+      },
+      "USW2 Get attributes": {
+        "position": {
+          "x": -240.8,
+          "y": 18.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaInvocationAttributes": {
+            "did": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "did": true
+        }
+      },
+      "Set preferred address": {
+        "position": {
+          "x": 2366.4,
+          "y": -336
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "CivicAddress": {
+              "useDynamic": true
+            },
+            "agent_did_number": {
+              "useDynamic": true
+            },
+            "location_name": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "CivicAddress",
+          "agent_did_number",
+          "location_name"
+        ]
+      },
+      "USW2 Set Flow Attributes ARN": {
+        "position": {
+          "x": 1083.2,
+          "y": -35.2
+        },
+        "isFriendlyName": true
+      },
+      "Check Region-2": {
+        "position": {
+          "x": 792,
+          "y": -216.8
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "9fef61a6-ff6e-4294-b5a9-e13efff79fac",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "us-east-1"
+          }
+        ]
+      },
+      "USE1 Set Flow Attributes ARN": {
+        "position": {
+          "x": 1084.8,
+          "y": -337.6
+        },
+        "isFriendlyName": true
+      },
+      "getAgentlocation and Update agentARN": {
+        "position": {
+          "x": 2044,
+          "y": -343.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "useDynamic": true
+          },
+          "LambdaInvocationAttributes": {
+            "agentId": {
+              "useDynamic": true
+            },
+            "ARN": {
+              "useDynamic": true
+            },
+            "associationTimeLimit": {
+              "useDynamic": true
+            },
+            "agentAddressTableName": {
+              "useDynamic": true
+            },
+            "911DIDTableName": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "agentId": true,
+          "ARN": true,
+          "associationTimeLimit": true,
+          "agentAddressTableName": true,
+          "911DIDTableName": true
+        },
+        "useDynamic": true
+      },
+      "Set Email Attributes": {
+        "position": {
+          "x": 1371.2,
+          "y": -338.4
+        },
+        "isFriendlyName": true
+      },
+      "be6f2994-4f65-41e6-b8f8-763fa8d75bbc": {
+        "position": {
+          "x": 4182.4,
+          "y": 366.4
+        }
+      },
+      "Call Phone Number 1": {
+        "position": {
+          "x": 2537.6,
+          "y": 320
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "CallerId": {
+            "Number": {
+              "inputOption": "dynamic"
+            }
+          }
+        },
+        "setOptionalCallerId": true,
+        "callerIdSource": "dynamic",
+        "useDynamicConnectionTimeout": false
+      },
+      "Check dialed Number": {
+        "position": {
+          "x": 1718.4,
+          "y": -335.2
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "ae78dc4c-d5e2-478c-b097-fe8abbdca01a",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "911"
+          },
+          {
+            "id": "e23f4894-6d6b-4034-a5db-17a06964e77c",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "933"
+          }
+        ]
+      },
+      "Call Caller ANI": {
+        "position": {
+          "x": 2240.8,
+          "y": 118.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "CallerId": {
+            "Number": {
+              "inputOption": "dynamic"
+            }
+          }
+        },
+        "setOptionalCallerId": true,
+        "callerIdSource": "dynamic",
+        "useDynamicConnectionTimeout": false
+      },
+      "Set CallerId": {
+        "position": {
+          "x": 2248,
+          "y": 292.8
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Check JB Customer Service Number": {
+        "position": {
+          "x": 1785.6,
+          "y": 71.2
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "15865470-dafd-4078-b29a-eb385627079c",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "+18014288086"
+          },
+          {
+            "id": "bde343a3-a9cd-40a8-b11b-4731ac4e0ffd",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "+18014288087"
+          }
+        ]
+      },
+      "ca63bdb5-0adb-4fd1-8830-d15bc4f467c8": {
+        "position": {
+          "x": 4173.6,
+          "y": 12.8
+        }
+      },
+      "Error in sending email alert": {
+        "position": {
+          "x": 2716,
+          "y": -88
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Updating agentstatus and 911 Routing Profile": {
+        "position": {
+          "x": 2921.6,
+          "y": -328
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "useDynamic": true
+          },
+          "LambdaInvocationAttributes": {
+            "agentARN": {
+              "useDynamic": true
+            },
+            "instanceARN": {
+              "useDynamic": true
+            },
+            "agentstatusId": {
+              "useDynamic": true
+            },
+            "routingProfileId": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "agentARN": true,
+          "instanceARN": true,
+          "agentstatusId": true,
+          "routingProfileId": true
+        },
+        "useDynamic": true
+      },
+      "Error in update Agent status and Routing Profile": {
+        "position": {
+          "x": 3046.4,
+          "y": -79.2
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Set Error Get Did Attributes": {
+        "position": {
+          "x": 270.4,
+          "y": 388.8
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Error in Getting agentlocation": {
+        "position": {
+          "x": 2364,
+          "y": -77.6
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Call Phone Number 2": {
+        "position": {
+          "x": 3727.2,
+          "y": -293.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "CallerId": {
+            "Number": {
+              "inputOption": "dynamic"
+            }
+          }
+        },
+        "setOptionalCallerId": true,
+        "callerIdSource": "dynamic",
+        "useDynamicConnectionTimeout": false
+      },
+      "Set Flow Attributes configs": {
+        "position": {
+          "x": 509.6,
+          "y": -210.4
+        },
+        "isFriendlyName": true
+      },
+      "USE1 Set attributes": {
+        "position": {
+          "x": -4,
+          "y": -208
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "languageCode": {
+              "useDynamic": true
+            },
+            "countryCode": {
+              "useDynamic": true
+            },
+            "getFlowAttributesLambdaARN": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "languageCode",
+          "countryCode",
+          "getFlowAttributesLambdaARN"
+        ]
+      },
+      "USW2 Set attributes": {
+        "position": {
+          "x": 4.8,
+          "y": 35.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "languageCode": {
+              "useDynamic": true
+            },
+            "countryCode": {
+              "useDynamic": true
+            },
+            "getFlowAttributesLambdaARN": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "languageCode",
+          "countryCode",
+          "getFlowAttributesLambdaARN"
+        ]
+      },
+      "Set Error Get Flow Attributes": {
+        "position": {
+          "x": 1438.4,
+          "y": 251.2
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "f64f8aff-1dc3-4b8a-9ca3-cb28e3a3ea53": {
+        "position": {
+          "x": 255.2,
+          "y": -206.4
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "useDynamic": true
+          },
+          "LambdaInvocationAttributes": {
+            "countryCode": {
+              "useDynamic": true
+            },
+            "languageCode": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "countryCode": true,
+          "contactFlow": false,
+          "languageCode": true
+        },
+        "useDynamic": true
+      },
+      "afa85f6f-2b9f-4f26-8b99-bbaec4eb8ad0": {
+        "position": {
+          "x": -1217.6,
+          "y": -196
+        }
+      },
+      "9f1a417b-c2a3-48ac-9eb0-d679a9dd49f1": {
+        "position": {
+          "x": -771.2,
+          "y": -205.6
+        },
+        "dynamicParams": []
+      },
+      "08442085-ddea-4a25-a486-c2db262dd372": {
+        "position": {
+          "x": -997.6,
+          "y": -196.8
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "jb_crew_OutboundWhisper",
+    "description": "",
+    "type": "outboundWhisper",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "$.FlowAttributes.sendEmailAlertlmbdaARN",
+        "InvocationTimeLimitSeconds": "8",
+        "LambdaInvocationAttributes": {
+          "CivicAddress": "$.Attributes.CivicAddress",
+          "agent_did_number": "$.Attributes.agent_did_number",
+          "getEmailSubject": "$.FlowAttributes.getEmailSubject",
+          "getEmailSender": "$.FlowAttributes.getEmailSender",
+          "agentEmail": "$.Agent.UserName",
+          "location_name": "$.Attributes.location_name",
+          "agentName": "$.Agent.FirstName"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "Send Email Alert",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Updating agentstatus and 911 Routing Profile",
+        "Errors": [
+          {
+            "NextAction": "Error in sending email alert",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:851725358643:function:connectea-internal-connect-getDidAttributes",
+        "InvocationTimeLimitSeconds": "3",
+        "LambdaInvocationAttributes": {
+          "did": "$.SystemEndpoint.Address"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "USE1 Get attributes",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "USE1 Set attributes",
+        "Errors": [
+          {
+            "NextAction": "Set Error Get Did Attributes",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.AwsRegion"
+      },
+      "Identifier": "Check Region",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "USW2 Get attributes",
+        "Conditions": [
+          {
+            "NextAction": "USE1 Get attributes",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "us-east-1"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "USW2 Get attributes",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-west-2:381492173985:function:connectea-internal-connect-getDidAttributes",
+        "InvocationTimeLimitSeconds": "3",
+        "LambdaInvocationAttributes": {
+          "did": "$.SystemEndpoint.Address"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "USW2 Get attributes",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "USW2 Set attributes",
+        "Errors": [
+          {
+            "NextAction": "Set Error Get Did Attributes",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "CivicAddress": "$.External.CivicAddress",
+          "agent_did_number": "$.External.agent_did_number",
+          "location_name": "$.External.location_name"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Set preferred address",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Send Email Alert",
+        "Errors": [
+          {
+            "NextAction": "Send Email Alert",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowAttributes": {
+          "getAgentLocationLmbdaARN": {
+            "Value": "$.External.us-west-2-getAgentLocationLmbdaARN"
+          },
+          "sendEmailAlertlmbdaARN": {
+            "Value": "$.External.us-west-2-sendEmailAlertlmbdaARN"
+          },
+          "setAgentstatusRplmbdaARN": {
+            "Value": "$.External.us-west-2-setAgentstatusRplmbdaARN"
+          }
+        }
+      },
+      "Identifier": "USW2 Set Flow Attributes ARN",
+      "Type": "UpdateFlowAttributes",
+      "Transitions": {
+        "NextAction": "Set Email Attributes",
+        "Errors": [
+          {
+            "NextAction": "Set Email Attributes",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.AwsRegion"
+      },
+      "Identifier": "Check Region-2",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "USW2 Set Flow Attributes ARN",
+        "Conditions": [
+          {
+            "NextAction": "USE1 Set Flow Attributes ARN",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "us-east-1"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "USW2 Set Flow Attributes ARN",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowAttributes": {
+          "getAgentLocationLmbdaARN": {
+            "Value": "$.External.us-east-1-getAgentLocationLmbdaARN"
+          },
+          "sendEmailAlertlmbdaARN": {
+            "Value": "$.External.us-east-1-sendEmailAlertlmbdaARN"
+          },
+          "setAgentstatusRplmbdaARN": {
+            "Value": "$.External.us-east-1-setAgentstatusRplmbdaARN"
+          }
+        }
+      },
+      "Identifier": "USE1 Set Flow Attributes ARN",
+      "Type": "UpdateFlowAttributes",
+      "Transitions": {
+        "NextAction": "Set Email Attributes",
+        "Errors": [
+          {
+            "NextAction": "Set Email Attributes",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "$.FlowAttributes.getAgentLocationLmbdaARN",
+        "InvocationTimeLimitSeconds": "3",
+        "LambdaInvocationAttributes": {
+          "agentId": "$.Agent.UserName",
+          "ARN": "$.Agent.ARN",
+          "associationTimeLimit": "$.FlowAttributes.associationTimeLimit",
+          "agentAddressTableName": "$.FlowAttributes.agentAddressTableName",
+          "911DIDTableName": "$.FlowAttributes.911DIDTableName"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "getAgentlocation and Update agentARN",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Set preferred address",
+        "Errors": [
+          {
+            "NextAction": "Error in Getting agentlocation",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowAttributes": {
+          "getEmailSender": {
+            "Value": "$.External.getEmailSender"
+          },
+          "getEmailSubject": {
+            "Value": "$.External.getEmailSubject"
+          }
+        }
+      },
+      "Identifier": "Set Email Attributes",
+      "Type": "UpdateFlowAttributes",
+      "Transitions": {
+        "NextAction": "Check dialed Number",
+        "Errors": [
+          {
+            "NextAction": "Check dialed Number",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "be6f2994-4f65-41e6-b8f8-763fa8d75bbc",
+      "Type": "EndFlowExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "CallerId": {
+          "Number": "$.Attributes.callerID"
+        }
+      },
+      "Identifier": "Call Phone Number 1",
+      "Type": "CompleteOutboundCall",
+      "Transitions": {
+        "NextAction": "be6f2994-4f65-41e6-b8f8-763fa8d75bbc"
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.CustomerEndpoint.Address"
+      },
+      "Identifier": "Check dialed Number",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "Check JB Customer Service Number",
+        "Conditions": [
+          {
+            "NextAction": "Set CallerId",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "911"
+              ]
+            }
+          },
+          {
+            "NextAction": "getAgentlocation and Update agentARN",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "933"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Check JB Customer Service Number",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "CallerId": {
+          "Number": "$.CustomerEndpoint.Address"
+        }
+      },
+      "Identifier": "Call Caller ANI",
+      "Type": "CompleteOutboundCall",
+      "Transitions": {
+        "NextAction": "be6f2994-4f65-41e6-b8f8-763fa8d75bbc"
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "callerID": "+18775382739"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Set CallerId",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Call Phone Number 1",
+        "Errors": [
+          {
+            "NextAction": "Call Phone Number 1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.SystemEndpoint.Address"
+      },
+      "Identifier": "Check JB Customer Service Number",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "Set CallerId",
+        "Conditions": [
+          {
+            "NextAction": "Call Caller ANI",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "+18014288086"
+              ]
+            }
+          },
+          {
+            "NextAction": "Call Caller ANI",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "+18014288087"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Set CallerId",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "ca63bdb5-0adb-4fd1-8830-d15bc4f467c8",
+      "Type": "EndFlowExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Error in Lambda sendEmailAlert"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Error in sending email alert",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Call Phone Number 2",
+        "Errors": [
+          {
+            "NextAction": "Call Phone Number 2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "$.FlowAttributes.setAgentstatusRplmbdaARN",
+        "InvocationTimeLimitSeconds": "3",
+        "LambdaInvocationAttributes": {
+          "agentARN": "$.Agent.ARN",
+          "instanceARN": "$.InstanceARN",
+          "agentstatusId": "$.FlowAttributes.agentstatusId",
+          "routingProfileId": "$.FlowAttributes.routingProfileId"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "Updating agentstatus and 911 Routing Profile",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Call Phone Number 2",
+        "Errors": [
+          {
+            "NextAction": "Error in update Agent status and Routing Profile",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Error in Lambda setAgentstatusrp"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Error in update Agent status and Routing Profile",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Call Phone Number 2",
+        "Errors": [
+          {
+            "NextAction": "Call Phone Number 2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Error in lambda getDidAttributes"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Set Error Get Did Attributes",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Call Phone Number 2",
+        "Errors": [
+          {
+            "NextAction": "Call Phone Number 2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney |  Error in Lambda getAgentLocation"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Error in Getting agentlocation",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Call Phone Number 2",
+        "Errors": [
+          {
+            "NextAction": "Call Phone Number 2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "CallerId": {
+          "Number": "$.Attributes.agent_did_number"
+        }
+      },
+      "Identifier": "Call Phone Number 2",
+      "Type": "CompleteOutboundCall",
+      "Transitions": {
+        "NextAction": "ca63bdb5-0adb-4fd1-8830-d15bc4f467c8"
+      }
+    },
+    {
+      "Parameters": {
+        "FlowAttributes": {
+          "associationTimeLimit": {
+            "Value": "$.External.associationTimeLimit"
+          },
+          "routingProfileId": {
+            "Value": "$.External.routingProfileId"
+          },
+          "agentstatusId": {
+            "Value": "$.External.agentstatusId"
+          },
+          "agentAddressTableName": {
+            "Value": "$.External.agentAddressTableName"
+          },
+          "911DIDTableName": {
+            "Value": "$.External.911DIDTableName"
+          }
+        }
+      },
+      "Identifier": "Set Flow Attributes configs",
+      "Type": "UpdateFlowAttributes",
+      "Transitions": {
+        "NextAction": "Check Region-2",
+        "Errors": [
+          {
+            "NextAction": "Check Region-2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "languageCode": "$.External.languageCode",
+          "countryCode": "$.External.countryCode",
+          "getFlowAttributesLambdaARN": "$.External.us-east-1-getFlowAttributesLambdaARN"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "USE1 Set attributes",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "f64f8aff-1dc3-4b8a-9ca3-cb28e3a3ea53",
+        "Errors": [
+          {
+            "NextAction": "f64f8aff-1dc3-4b8a-9ca3-cb28e3a3ea53",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "languageCode": "$.External.languageCode",
+          "countryCode": "$.External.countryCode",
+          "getFlowAttributesLambdaARN": "$.External.us-west-2-getFlowAttributesLambdaARN"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "USW2 Set attributes",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "f64f8aff-1dc3-4b8a-9ca3-cb28e3a3ea53",
+        "Errors": [
+          {
+            "NextAction": "f64f8aff-1dc3-4b8a-9ca3-cb28e3a3ea53",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Error in Lambda getFlowAttributes"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Set Error Get Flow Attributes",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Call Phone Number 2",
+        "Errors": [
+          {
+            "NextAction": "Call Phone Number 2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "$.Attributes.getFlowAttributesLambdaARN",
+        "InvocationTimeLimitSeconds": "3",
+        "LambdaInvocationAttributes": {
+          "countryCode": "$.Attributes.countryCode",
+          "contactFlow": "jb_crew_OutboundWhisper",
+          "languageCode": "$.Attributes.languageCode"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "f64f8aff-1dc3-4b8a-9ca3-cb28e3a3ea53",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Set Flow Attributes configs",
+        "Errors": [
+          {
+            "NextAction": "Set Error Get Flow Attributes",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Identifier": "afa85f6f-2b9f-4f26-8b99-bbaec4eb8ad0",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Transitions": {
+        "NextAction": "08442085-ddea-4a25-a486-c2db262dd372"
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "JB Crew Outbound Whisper Flow"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "9f1a417b-c2a3-48ac-9eb0-d679a9dd49f1",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Check Region",
+        "Errors": [
+          {
+            "NextAction": "Check Region",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "RecordingBehavior": {
+          "RecordedParticipants": [
+            "Agent",
+            "Customer"
+          ],
+          "IVRRecordingBehavior": "Disabled"
+        },
+        "AnalyticsBehavior": {
+          "Enabled": "True",
+          "AnalyticsLanguage": "en-US",
+          "AnalyticsRedactionBehavior": "Disabled",
+          "AnalyticsRedactionResults": "RedactedAndOriginal",
+          "ChannelConfiguration": {
+            "Chat": {
+              "AnalyticsModes": []
+            },
+            "Voice": {
+              "AnalyticsModes": [
+                "RealTime"
+              ]
+            }
+          },
+          "SummaryConfiguration": {
+            "SummaryModes": [
+              "PostContact"
+            ]
+          },
+          "SentimentConfiguration": {
+            "Enabled": "True"
+          }
+        }
+      },
+      "Identifier": "08442085-ddea-4a25-a486-c2db262dd372",
+      "Type": "UpdateContactRecordingBehavior",
+      "Transitions": {
+        "NextAction": "9f1a417b-c2a3-48ac-9eb0-d679a9dd49f1"
+      }
+    }
+  ]
+}

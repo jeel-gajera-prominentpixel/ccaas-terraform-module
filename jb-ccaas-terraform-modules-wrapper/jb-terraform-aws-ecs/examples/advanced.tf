@@ -1,0 +1,30 @@
+
+module "ecs_advance" {
+  source                                = "git@github.com:jetblueairways/ccaas-terraform-modules-wrapper.git//jb-terraform-aws-ecs-fargate?ref=main"
+  prefix_company                        = "jb"
+  identifier                            = "test"
+  lob                                   = "itsd"
+  prefix_region                         = "usw2"
+  application                           = "recordings"
+  env                                   = "sandbox"
+  create_ecs_cluster                    = true
+  name                                  = "example-ecs-service-name"
+  desired_count                         = 2
+  launch_type                           = "FARGATE"
+  platform_version                      = "1.4.0"
+  enable_execute_command                = "true"
+  subnet_ids                            = ["subnet-12345678", "subnet-87654321"]
+  security_group_ids                    = ["sg-12345678"]
+  deployment_minimum_healthy_percent    = "50"
+  deployment_maximum_percent            = ""
+  wait_for_steady_state                 = true
+  create_iam_role                       = true
+  create_task_definition                = true
+  create_task_exec_iam_role             = true
+  create_task_exec_policy               = true
+  create_tasks_iam_role                 = true
+  enable_autoscaling                    = true
+  create_security_group                 = true
+  create_infrastructure_iam_role        = true
+  tags = local.tags
+}
