@@ -1,6 +1,6 @@
-data "external" "env" {
-  program = ["${path.module}/scripts/env.sh"]
-}
+# data "external" "env" {
+#   program = ["${path.module}/scripts/env.sh"]
+# }
 
 locals {
   eventbridge_name = format("%s-eb-%s-%s-%s-%s", var.prefix_company, var.lob, var.application, var.prefix_region, var.env)
@@ -9,7 +9,7 @@ locals {
     {
       module_project_path = local.module_project_path,
       module_version      = local.module_version,
-      project_path        = data.external.env.result["project_path"]
+      # project_path        = data.external.env.result["project_path"]
       company             = var.prefix_company
       region              = var.prefix_region
       lob                 = var.lob
