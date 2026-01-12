@@ -1,0 +1,38 @@
+.DS_Store
+# Terraform .terraform directory
+.terraform/
+
+# Terraform .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Terraform crash log files
+crash.log
+
+# .tfvars files are used to populate variables and should not be stored in the repository
+*.tfvars
+
+# Override files as they can contain sensitive data
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Exclude CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore .tfplan files as they can contain sensitive data
+*.tfplan
+
+# Ignore provider plugins (binary)
+*.plugin
+
+# Ignore local workspace files
+/.terraform/
+
+# Ignore .tfplan files (optional)
+*.tfplan
+
+# Ignore files created by Visual Studio Code (optional)
+.vscode/

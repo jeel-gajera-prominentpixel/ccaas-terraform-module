@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Demo CloudFormation template for syntax validation. No resources will be created.
+
+Parameters:
+  EnvName:
+    Type: String
+    Default: sandbox
+    Description: Environment name for testing
+
+Metadata:
+  Author: CloudFormation Test
+  Purpose: Syntax validation only
+  DateCreated: 2025-07-23
+
+Conditions:
+  AlwaysFalse: !Equals [ "false", "true" ]
+
+Resources:
+  DummyResource:
+    Type: "AWS::CloudFormation::WaitConditionHandle"
+
+Outputs:
+  TemplateValidation:
+    Description: Confirm the template executed successfully
+    Value: "Template is valid and no resources were created"

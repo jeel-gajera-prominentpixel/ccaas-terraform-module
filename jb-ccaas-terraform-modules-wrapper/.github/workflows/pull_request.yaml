@@ -1,0 +1,17 @@
+name: Pull Request (Dev) workflow
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+jobs:
+  test_us-west-2:
+    uses: ./.github/workflows/test_case_template.yaml
+    with:
+      environment: sandbox
+      use_oidc: "true"
+      aws_region: "us-west-2"
+    secrets: inherit

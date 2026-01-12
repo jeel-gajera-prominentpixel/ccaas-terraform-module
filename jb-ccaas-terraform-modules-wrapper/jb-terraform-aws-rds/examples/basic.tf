@@ -1,0 +1,20 @@
+module "rds_basic" {
+  source                 = "git@github.com:jetblueairways/ccaas-terraform-modules-wrapper.git//jb-terraform-aws-rds?ref=main"
+  prefix_company         = "jb"
+  identifier             = "test"
+  lob                    = "itsd"
+  prefix_region          = "usw2"
+  application            = "recordings"
+  env                    = "sandbox"
+  engine                 = "postgres"
+  engine_version         = "14"
+  instance_class         = "db.t4g.large"
+  allocated_storage      = 20
+  db_name                = "completePostgresql"
+  family                 = "postgres14"
+  username               = "complete_postgresql"
+  port                   = 5432
+  multi_az               = true
+  db_subnet_group_name   = "example-db-subnet-group"
+  vpc_security_group_ids = ["sg-12345678"]
+}

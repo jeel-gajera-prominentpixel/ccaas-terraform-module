@@ -1,0 +1,148 @@
+name: Terratest Template
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: "Environment to deploy to"
+        default: "sandbox"
+      aws_region:
+        type: string
+        description: "If using AWS, the region to target. Defaults to us-west-2."
+        default: "us-west-2"
+      use_oidc:
+        type: string
+        description: "Use the OIDC provider to authenticate the provisioning process"
+        default: "false"
+      working_directory:
+        type: string
+        description: "The directory where infrastructure code resides"
+        default: "."
+    secrets:
+      JB_ACTIONS_PRIVATE_KEY:
+        required: true
+      AWS_ASSUME_ROLE:
+        required: true
+      AWS_ACCOUNT_NUMBER:
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  detect-changes:
+    environment: ${{ inputs.environment }}
+    runs-on: ccaas-arc-runner-set-${{ inputs.environment }}
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files and detect modules
+        id: set-matrix
+        shell: bash
+        run: |
+          # Get the base ref for the PR
+          BASE_SHA=$(git rev-parse ${{ github.event.pull_request.base.sha }})
+
+          # Get changed files and create JSON matrix
+          MATRIX_JSON=$(git diff --name-only $BASE_SHA HEAD | \
+            grep -v "\.github/workflows/" | \
+            grep "^jb-terraform-aws-[^/]*/" | \
+            cut -d'/' -f1 | \
+            sort -u | \
+            jq -c -R -s 'split("\n") | map(select(length > 0)) | {"module": .}')
+
+          # Properly escape the JSON for GITHUB_OUTPUT
+          echo "matrix=$MATRIX_JSON" >> "$GITHUB_OUTPUT"
+
+          # Debug output
+          echo "Matrix JSON:"
+          echo "$MATRIX_JSON"
+
+  test-modules:
+    environment: ${{ inputs.environment }}
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.matrix != '' && fromJson(needs.detect-changes.outputs.matrix).module[0] != null }}
+    runs-on: ccaas-arc-runner-set-${{ inputs.environment }}
+    strategy:
+      matrix: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
+      fail-fast: false
+    env:
+      AWS_DEFAULT_REGION: ${{ inputs.aws_region }}
+      AWS_REGION: ${{ inputs.aws_region }}
+      TF_VAR_role_name: ${{ secrets.AWS_ASSUME_ROLE }}
+      TF_VAR_account_number: ${{ secrets.AWS_ACCOUNT_NUMBER }}
+      TF_VAR_deployment_region: ${{ inputs.aws_region }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install missing dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip git
+
+      - name: Generate token
+        uses: actions/create-github-app-token@v1
+        id: generate_token
+        with:
+          app-id: 965107
+          private-key: ${{ secrets.JB_ACTIONS_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repository: ${{ github.event.repository.name }}
+
+      - name: configure git
+        run: git config --global url.https://oauth2:$GH_TOKEN@github.com.insteadOf ssh://git@github.com
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Log in to AWS using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        if: ${{ inputs.use_oidc == 'true' }}
+        with:
+          aws-region: ${{ inputs.aws_region }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_NUMBER }}:role/${{ secrets.AWS_ASSUME_ROLE }}
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+
+      - name: OpenTofu Init
+        id: init
+        # run: |
+        #   ls
+        #   mkdir Artifact
+          # tofu -chdir=jb-terraform-aws-amazon-connect init -input=false -json
+        run: tofu -chdir=${{ matrix.module }} init -input=false -json
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21.6'
+
+      - name: Run Terratest
+        working-directory: ${{ matrix.module }}
+        run: |
+          mkdir ../Artifact_${{ matrix.module }}
+          if [ -d "test" ]; then
+            cd test
+            go test -v -timeout 50m > ../../Artifact_${{ matrix.module }}/${{ matrix.module }}.txt
+            grep -v 'retry.go' ../../Artifact_${{ matrix.module }}/${{ matrix.module }}.txt > temp && mv temp ../../Artifact_${{ matrix.module }}/${{ matrix.module }}.txt
+          else
+            echo "No test directory found in ${{ matrix.module }}"
+            exit 1
+          fi
+
+      - name: Upload plan artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Artifact_${{ matrix.module }}
+          path: Artifact_${{ matrix.module }}

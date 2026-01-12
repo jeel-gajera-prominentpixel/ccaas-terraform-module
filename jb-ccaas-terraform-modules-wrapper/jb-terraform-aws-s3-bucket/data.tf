@@ -1,0 +1,10 @@
+data "aws_canonical_user_id" "current" {}
+data "aws_cloudfront_log_delivery_canonical_user_id" "cloudfront" {}
+
+
+# data "aws_caller_identity" "current" {}
+
+# data "aws_region" "current" {}
+# data "aws_s3_bucket" "logging" {
+#   bucket = format("%s-s3-%s-logging-%s-%s", var.company, var.lob, data.aws_region.current.name, var.env)
+# }

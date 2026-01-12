@@ -1,0 +1,64 @@
+output "s3_bucket_arn" {
+  value       = module.s3_bucket.s3_bucket_arn
+  description = "The ARN of the bucket. Will be of format arn:aws:s3:::bucketname."
+}
+
+output "s3_bucket_id" {
+  value       = module.s3_bucket.s3_bucket_id
+  description = "The name of the bucket."
+}
+
+output "s3_bucket_bucket_domain_name" {
+  description = "The bucket domain name. Will be of format bucketname.s3.amazonaws.com."
+  value       = module.s3_bucket.s3_bucket_bucket_domain_name
+}
+
+output "s3_bucket_bucket_regional_domain_name" {
+  description = "The bucket region-specific domain name. The bucket domain name including the region name, please refer here for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent redirect issues from CloudFront to S3 Origin URL."
+  value       = module.s3_bucket.s3_bucket_bucket_regional_domain_name
+}
+
+output "s3_bucket_force_destroy" {
+  description = "hould be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. These objects are not recoverable. This only deletes objects when the bucket is destroyed."
+  value       = try(module.s3_bucket.s3_bucket_force_destroy, "")
+}
+
+output "s3_bucket_bucket_prefix" {
+  description = "Creates a unique bucket name beginning with the specified prefix."
+  value       = try(module.s3_bucket.s3_bucket_bucket_prefix, "")
+}
+
+output "s3_bucket_versioning" {
+  description = "Configuration of the S3 bucket versioning state."
+  value       = try(module.s3_bucket.s3_bucket_versioning, "")
+}
+
+output "s3_bucket_hosted_zone_id" {
+  description = "The Route 53 Hosted Zone ID for this bucket's region."
+  value       = try(module.s3_bucket.s3_bucket_hosted_zone_id, "")
+}
+
+output "s3_bucket_lifecycle_configuration_rules" {
+  description = "The lifecycle rules of the bucket, if the bucket is configured with lifecycle rules. If not, this will be an empty string."
+  value       = try(module.s3_bucket.s3_bucket_lifecycle_configuration_rules, "")
+}
+
+output "s3_bucket_policy" {
+  description = "The policy of the bucket, if the bucket is configured with a policy. If not, this will be an empty string."
+  value       = try(module.s3_bucket.s3_bucket_policy, "")
+}
+
+output "s3_bucket_region" {
+  description = "The AWS region this bucket resides in."
+  value       = try(module.s3_bucket.s3_bucket_region, "")
+}
+
+output "s3_bucket_website_endpoint" {
+  description = "The website endpoint, if the bucket is configured with a website. If not, this will be an empty string."
+  value       = try(module.s3_bucket.s3_bucket_website_endpoint, "")
+}
+
+output "s3_bucket_website_domain" {
+  description = "The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records."
+  value       = try(module.s3_bucket.s3_bucket_website_domain, "")
+}

@@ -1,0 +1,1000 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "9b21b3c1-8afa-4cf9-97dc-174a797bfc81",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": -2066.4,
+      "y": 436
+    },
+    "ActionMetadata": {
+      "Customer Journey Add Error-copy-1-copy-1-copy-1": {
+        "position": {
+          "x": 2796,
+          "y": 368
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Customer Journey Add Error-copy-1-copy-1": {
+        "position": {
+          "x": 2795.2,
+          "y": 180.8
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "a09f52a9-fb12-4e33-a2c0-32e7ec838096": {
+        "position": {
+          "x": 3320,
+          "y": 390.4
+        }
+      },
+      "127a3beb-5492-433d-822d-5c5389a52a33": {
+        "position": {
+          "x": 2568,
+          "y": 221.6
+        }
+      },
+      "jb-prompt-unexpected-error": {
+        "position": {
+          "x": 3096,
+          "y": 334.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "SSML": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "606d55eb-d32e-4464-835d-c2df6f10fc0b": {
+        "position": {
+          "x": 2328.8,
+          "y": 220
+        },
+        "parameters": {
+          "QueueId": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "Customer Queue Flow-voice": {
+        "position": {
+          "x": 1535.2,
+          "y": 35.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "CustomerQueue": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": true
+      },
+      "Customer Journey Add Error 2": {
+        "position": {
+          "x": 1761.6,
+          "y": 38.4
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Customer Journey Add Error 2-copy-1": {
+        "position": {
+          "x": 1756.8,
+          "y": 286.4
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Customer Queue Flow -dtmf": {
+        "position": {
+          "x": 1538.4,
+          "y": 286.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "CustomerQueue": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": true
+      },
+      "Customer Journey Add Error 4": {
+        "position": {
+          "x": 500.8,
+          "y": 261.6
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Customer Journey Add Error 3": {
+        "position": {
+          "x": 253.6,
+          "y": 276
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Customer Hold Flow-copy-1": {
+        "position": {
+          "x": 493.6,
+          "y": 60
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "CustomerHold": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": true
+      },
+      "Customer Whisper Flow": {
+        "position": {
+          "x": 727.2,
+          "y": 57.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "CustomerWhisper": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": true
+      },
+      "Customer Journey Add Error 5": {
+        "position": {
+          "x": 740,
+          "y": 259.2
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Check input mode": {
+        "position": {
+          "x": 1281.6,
+          "y": 179.2
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "c936e3a6-e8dd-4292-8711-c8b5b27ae530",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "voice"
+          }
+        ]
+      },
+      "Agent Whisper Flow": {
+        "position": {
+          "x": 969.6,
+          "y": 50.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "AgentWhisper": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": false
+      },
+      "Customer Journey Add Error 6": {
+        "position": {
+          "x": 982.4,
+          "y": 257.6
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Contact Flow Name": {
+        "position": {
+          "x": -1754.4,
+          "y": 422.4
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "jb-prompt-agent-transfer": {
+        "position": {
+          "x": 2088.8,
+          "y": 217.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "SSML": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "Add Journey Attribute to related Contact": {
+        "position": {
+          "x": -1537.6,
+          "y": 420.8
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Customer Journey Add Error-copy-1": {
+        "position": {
+          "x": -1312,
+          "y": 644.8
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "USE1 DAY MOH": {
+        "position": {
+          "x": -279.2,
+          "y": -203.2
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "USW2 DAY MOH": {
+        "position": {
+          "x": -274.4,
+          "y": 31.2
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "USE1 NIGHT MOH": {
+        "position": {
+          "x": -267.2,
+          "y": 302.4
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "Agent Hold Flow-copy-1": {
+        "position": {
+          "x": 243.2,
+          "y": 59.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "EventHooks": {
+            "AgentHold": {
+              "useDynamic": true
+            }
+          }
+        },
+        "useDynamic": true,
+        "customerOrAgent": false
+      },
+      "USW2 NIGHT MOH": {
+        "position": {
+          "x": -259.2,
+          "y": 532.8
+        },
+        "isFriendlyName": true,
+        "dynamicParams": []
+      },
+      "9b21b3c1-8afa-4cf9-97dc-174a797bfc81": {
+        "position": {
+          "x": -1969.6,
+          "y": 425.6
+        }
+      },
+      "Get flow Attributes": {
+        "position": {
+          "x": -1312.8,
+          "y": 419.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "useDynamic": true
+          },
+          "LambdaInvocationAttributes": {
+            "countryCode": {
+              "useDynamic": true
+            },
+            "contactFlow": {
+              "useDynamic": true
+            },
+            "languageCode": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "countryCode": true,
+          "contactFlow": true,
+          "languageCode": true
+        },
+        "useDynamic": true
+      },
+      "In Hours Check Region": {
+        "position": {
+          "x": -765.6,
+          "y": 261.6
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "6310fe36-b27a-47cd-a32b-485edca91b3b",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "us-east-1"
+          }
+        ]
+      },
+      "Out of hours Check Region": {
+        "position": {
+          "x": -755.2,
+          "y": 537.6
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "8255bbc8-c4d6-408e-9c17-c8d3dad84261",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "us-east-1"
+          }
+        ]
+      },
+      "Check HOOP for MOH": {
+        "position": {
+          "x": -1015.2,
+          "y": 357.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "HoursOfOperationId": {
+            "displayName": "jb_shared_moh"
+          }
+        }
+      }
+    },
+    "Annotations": []
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Transfer To Queue Error"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Customer Journey Add Error-copy-1-copy-1-copy-1",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "jb-prompt-unexpected-error",
+        "Errors": [
+          {
+            "NextAction": "jb-prompt-unexpected-error",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Transfer To Queue Error- At capacity"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Customer Journey Add Error-copy-1-copy-1",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "jb-prompt-unexpected-error",
+        "Errors": [
+          {
+            "NextAction": "jb-prompt-unexpected-error",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "a09f52a9-fb12-4e33-a2c0-32e7ec838096",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {},
+      "Identifier": "127a3beb-5492-433d-822d-5c5389a52a33",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "Customer Journey Add Error-copy-1-copy-1-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error-copy-1-copy-1",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "Customer Journey Add Error-copy-1-copy-1-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SSML": "$.External.jb-prompt-unexpected-error"
+      },
+      "Identifier": "jb-prompt-unexpected-error",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "a09f52a9-fb12-4e33-a2c0-32e7ec838096",
+        "Errors": [
+          {
+            "NextAction": "a09f52a9-fb12-4e33-a2c0-32e7ec838096",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "$.Queue.ARN"
+      },
+      "Identifier": "606d55eb-d32e-4464-835d-c2df6f10fc0b",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "127a3beb-5492-433d-822d-5c5389a52a33",
+        "Errors": [
+          {
+            "NextAction": "jb-prompt-unexpected-error",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerQueue": "$.External.nlpCustomerQueueContactFlow"
+        }
+      },
+      "Identifier": "Customer Queue Flow-voice",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "jb-prompt-agent-transfer",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error 2",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Set Customer Queue Flow Error"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Customer Journey Add Error 2",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "jb-prompt-agent-transfer",
+        "Errors": [
+          {
+            "NextAction": "jb-prompt-agent-transfer",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Set Customer Queue Flow Error"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Customer Journey Add Error 2-copy-1",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "jb-prompt-agent-transfer",
+        "Errors": [
+          {
+            "NextAction": "jb-prompt-agent-transfer",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerQueue": "$.External.dtmfCustomerQueueContactFlow"
+        }
+      },
+      "Identifier": "Customer Queue Flow -dtmf",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "jb-prompt-agent-transfer",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error 2-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Set Customer Hold Flow Error Error"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Customer Journey Add Error 4",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Customer Whisper Flow",
+        "Errors": [
+          {
+            "NextAction": "Customer Whisper Flow",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Set Agent Hold Flow Error"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Customer Journey Add Error 3",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Customer Hold Flow-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Customer Hold Flow-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerHold": "$.External.customerHoldContactFlow"
+        }
+      },
+      "Identifier": "Customer Hold Flow-copy-1",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "Customer Whisper Flow",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error 4",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "CustomerWhisper": "$.External.customerWhisperContactFlow"
+        }
+      },
+      "Identifier": "Customer Whisper Flow",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "Agent Whisper Flow",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error 5",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Set Customer Whisper Flow Error"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Customer Journey Add Error 5",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Agent Whisper Flow",
+        "Errors": [
+          {
+            "NextAction": "Agent Whisper Flow",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.Attributes.jb-input-mode"
+      },
+      "Identifier": "Check input mode",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "Customer Queue Flow -dtmf",
+        "Conditions": [
+          {
+            "NextAction": "Customer Queue Flow-voice",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "voice"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Customer Queue Flow -dtmf",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "AgentWhisper": "$.External.agentWhisperContactFlow"
+        }
+      },
+      "Identifier": "Agent Whisper Flow",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "Check input mode",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error 6",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Set Agent Whisper Flow Error"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Customer Journey Add Error 6",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Check input mode",
+        "Errors": [
+          {
+            "NextAction": "Check input mode",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "contactFlowName": "jb_crew_QueueTransfer"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Contact Flow Name",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Add Journey Attribute to related Contact",
+        "Errors": [
+          {
+            "NextAction": "Add Journey Attribute to related Contact",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SSML": "$.External.jb-prompt-agent-transfer"
+      },
+      "Identifier": "jb-prompt-agent-transfer",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "606d55eb-d32e-4464-835d-c2df6f10fc0b",
+        "Errors": [
+          {
+            "NextAction": "606d55eb-d32e-4464-835d-c2df6f10fc0b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | jb_crew_QueueTransfer"
+        },
+        "TargetContact": "Related"
+      },
+      "Identifier": "Add Journey Attribute to related Contact",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Get flow Attributes",
+        "Errors": [
+          {
+            "NextAction": "Get flow Attributes",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "customerJourney": "$.Attributes.customerJourney | Lambda Error- getFlowAttributes"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Customer Journey Add Error-copy-1",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "jb-prompt-agent-transfer",
+        "Errors": [
+          {
+            "NextAction": "jb-prompt-agent-transfer",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MOH": "$.External.us-east-1-dayMOH"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "USE1 DAY MOH",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Agent Hold Flow-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Agent Hold Flow-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MOH": "$.External.us-west-2-dayMOH"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "USW2 DAY MOH",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Agent Hold Flow-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Agent Hold Flow-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MOH": "$.External.us-east-1-nightMOH"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "USE1 NIGHT MOH",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Agent Hold Flow-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Agent Hold Flow-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "EventHooks": {
+          "AgentHold": "$.External.agentHoldContactFlow"
+        }
+      },
+      "Identifier": "Agent Hold Flow-copy-1",
+      "Type": "UpdateContactEventHooks",
+      "Transitions": {
+        "NextAction": "Customer Hold Flow-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error 3",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "MOH": "$.External.us-west-2-nightMOH"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "USW2 NIGHT MOH",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "Agent Hold Flow-copy-1",
+        "Errors": [
+          {
+            "NextAction": "Agent Hold Flow-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Identifier": "9b21b3c1-8afa-4cf9-97dc-174a797bfc81",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Transitions": {
+        "NextAction": "Contact Flow Name"
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "$.Attributes.getFlowAttributesLambdaARN",
+        "InvocationTimeLimitSeconds": "8",
+        "LambdaInvocationAttributes": {
+          "countryCode": "$.Attributes.countryCode",
+          "contactFlow": "$.Attributes.contactFlowName",
+          "languageCode": "$.Attributes.languageCode"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "Get flow Attributes",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Check HOOP for MOH",
+        "Errors": [
+          {
+            "NextAction": "Customer Journey Add Error-copy-1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.AwsRegion"
+      },
+      "Identifier": "In Hours Check Region",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "USW2 DAY MOH",
+        "Conditions": [
+          {
+            "NextAction": "USE1 DAY MOH",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "us-east-1"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "USW2 DAY MOH",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.AwsRegion"
+      },
+      "Identifier": "Out of hours Check Region",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "USW2 NIGHT MOH",
+        "Conditions": [
+          {
+            "NextAction": "USE1 NIGHT MOH",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "us-east-1"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "USW2 NIGHT MOH",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "Check HOOP for MOH",
+      "Type": "CheckHoursOfOperation",
+      "Transitions": {
+        "NextAction": "Out of hours Check Region",
+        "Conditions": [
+          {
+            "NextAction": "In Hours Check Region",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "True"
+              ]
+            }
+          },
+          {
+            "NextAction": "Out of hours Check Region",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "False"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "Out of hours Check Region",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}

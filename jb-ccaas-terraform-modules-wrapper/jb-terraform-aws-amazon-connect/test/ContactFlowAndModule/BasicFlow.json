@@ -1,0 +1,87 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "Set the target queue",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 20.8,
+      "y": 20
+    },
+    "ActionMetadata": {
+      "Set the target queue": {
+        "position": {
+          "x": 140,
+          "y": 17.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "QueueId": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "Route voicemail": {
+        "position": {
+          "x": 382.4,
+          "y": 18.4
+        },
+        "isFriendlyName": true
+      },
+      "End flow": {
+        "position": {
+          "x": 620,
+          "y": 78.4
+        },
+        "isFriendlyName": true
+      }
+    },
+    "Annotations": [],
+    "name": "test_contact_flows",
+    "description": "Sample basic task flow for voicemail.",
+    "type": "contactFlow",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "QueueId": "$.Attributes.vmx3_queue_arn"
+      },
+      "Identifier": "Set the target queue",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "Route voicemail",
+        "Errors": [
+          {
+            "NextAction": "Route voicemail",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "Route voicemail",
+      "Type": "TransferContactToQueue",
+      "Transitions": {
+        "NextAction": "End flow",
+        "Errors": [
+          {
+            "NextAction": "End flow",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "End flow",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "End flow",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    }
+  ]
+}
