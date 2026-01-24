@@ -1,5 +1,5 @@
 module "eventbridge" {
-  source                         = "../jb-ccaas-terraform-modules/terraform-aws-eventbridge"
+  source                         = "../terraform-aws-eventbridge-v4.2.2"
   bus_name                       = var.bus_name
   create_bus                     = var.bus_name == "default" ? false : var.create_bus
   rules                          = var.rules
@@ -74,5 +74,5 @@ module "eventbridge" {
   role_path                      = lookup(var.role_configuration, "path", null)
   role_permissions_boundary      = lookup(var.role_configuration, "permissions_boundary", null)
   role_tags                      = lookup(var.role_configuration, "tags", {})
-  tags                           = merge(local.tags, { Name = var.name == "" ? local.eb_name : var.name }, var.tags, { "map-migrated" = "123456" })
+  tags                           = merge(local.tags, { Name = var.name }, var.tags, { "map-migrated" = "123456" })
 }
