@@ -5,6 +5,16 @@ variable "project" {
   default     = ""
 }
 
+variable "company" {
+  description = "Name the company, used for resource naming conventions."
+  type        = string
+}
+
+variable "environment" {
+  description = "The deployment environment of the resource (e.g., dev, staging, prod)."
+  type        = string
+}
+
 variable "region" {
   description = "Region of the resource."
   type        = string
