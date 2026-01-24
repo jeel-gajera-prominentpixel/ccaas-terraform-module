@@ -257,3 +257,15 @@ variable "trusted_entities" {
   type        = list(string)
   default     = []
 }
+
+variable "create_log_delivery" {
+  description = "Whether to create log delivery resources"
+  type        = bool
+  default     = false
+}
+
+variable "create_log_delivery_source" {
+  description = "Whether to create log delivery source"
+  type        = bool
+  default     = false
+}

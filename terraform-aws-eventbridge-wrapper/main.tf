@@ -27,6 +27,8 @@ module "eventbridge" {
   schedules                      = var.schedules
   schedule_groups                = var.schedule_groups
   schedule_group_timeouts        = var.schedule_group_timeouts
+  create_log_delivery            = var.create_log_delivery
+  create_log_delivery_source     = var.create_log_delivery_source
   create                         = true
   create_api_destinations        = lookup(var.create, "api_destinations", false)
   create_archives                = lookup(var.create, "archives", false)
