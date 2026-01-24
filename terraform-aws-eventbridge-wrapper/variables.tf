@@ -5,14 +5,34 @@ variable "project" {
   default     = ""
 }
 
-variable "company" {
-  description = "Name the company, used for resource naming conventions."
+variable "application" {
+  description = "Application name"
   type        = string
+  default     = ""  
+}
+
+variable "company_prefix" {
+  description = "Company prefix"
+  type        = string
+  default     = ""  
+}
+
+variable "company" {
+  description = "Company name"
+  type        = string
+  default     = ""  
 }
 
 variable "environment" {
-  description = "The deployment environment of the resource (e.g., dev, staging, prod)."
+  description = "Environment name"
   type        = string
+  default     = ""  
+}
+
+variable "region_suffix" {
+  description = "Region suffix"
+  type        = string
+  default     = ""  
 }
 
 variable "region" {
