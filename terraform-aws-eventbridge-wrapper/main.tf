@@ -33,7 +33,7 @@ module "eventbridge" {
   create_connections             = lookup(var.create, "connections", false)
   create_permissions             = lookup(var.create, "permissions", true)
   create_pipes                   = lookup(var.create, "pipes", true)
-  create_role                    = lookup(var.create, "role", true)
+  create_role                    = lookup(var.create, "role", false)
   create_schedule_groups         = lookup(var.create, "schedule_groups", true)
   create_schedules               = lookup(var.create, "schedules", true)
   create_schemas_discoverer      = lookup(var.create, "schemas_discoverer", false)
