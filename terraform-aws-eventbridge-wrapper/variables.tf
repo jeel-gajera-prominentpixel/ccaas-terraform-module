@@ -1,9 +1,4 @@
 # Common variables.
-variable "application" {
-  description = "The name of the application associated with this resource."
-  type        = string
-}
-
 variable "project" {
   description = "The name of the project associated with this resource."
   type        = string
