@@ -261,11 +261,11 @@ variable "trusted_entities" {
 variable "create_log_delivery" {
   description = "Whether to create log delivery resources"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "create_log_delivery_source" {
   description = "Whether to create log delivery source"
   type        = bool
-  default     = false
+  default     = true
 }
