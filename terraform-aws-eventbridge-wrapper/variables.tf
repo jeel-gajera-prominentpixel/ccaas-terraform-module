@@ -300,11 +300,6 @@ variable "policy_statements" {
 # API Destinations & Connections
 ############################
 
-variable "api_destinations" {
-  type    = any
-  default = {}
-}
-
 variable "create_api_destinations" {
   type    = bool
   default = false
@@ -347,10 +342,6 @@ variable "create_permissions" {
 # Pipes
 ############################
 
-variable "pipes" {
-  type    = any
-  default = {}
-}
 
 variable "create_pipes" {
   type    = bool
@@ -395,14 +386,6 @@ variable "create_schemas_discoverer" {
   default = false
 }
 
-############################
-# Event Source
-############################
-
-variable "event_source_name" {
-  type    = string
-  default = null
-}
 
 ############################
 # IAM Role Configuration
@@ -441,11 +424,6 @@ variable "role_permissions_boundary" {
 variable "role_tags" {
   type    = map(string)
   default = {}
-}
-
-variable "trusted_entities" {
-  type    = list(string)
-  default = []
 }
 
 ############################
@@ -498,11 +476,6 @@ variable "attach_policy_json" {
 }
 
 variable "attach_policy_jsons" {
-  type    = bool
-  default = false
-}
-
-variable "attach_policy_statements" {
   type    = bool
   default = false
 }
