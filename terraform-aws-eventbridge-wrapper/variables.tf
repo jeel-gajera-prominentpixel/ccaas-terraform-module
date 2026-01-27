@@ -285,16 +285,6 @@ variable "append_rule_postfix" {
   default = false
 }
 
-############################
-# Policies
-############################
-
-
-variable "policy_statements" {
-  type    = any
-  default = {}
-}
-
 
 ############################
 # API Destinations & Connections
