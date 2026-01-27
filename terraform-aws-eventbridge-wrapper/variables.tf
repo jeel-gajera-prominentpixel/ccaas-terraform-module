@@ -269,3 +269,304 @@ variable "create_log_delivery_source" {
   type        = bool
   default     = true
 }
+
+variable "create_rules" {
+  type    = bool
+  default = false
+}
+
+variable "create_targets" {
+  type    = bool
+  default = false
+}
+
+variable "append_rule_postfix" {
+  type    = bool
+  default = false
+}
+
+############################
+# Policies
+############################
+
+
+variable "policy_statements" {
+  type    = any
+  default = {}
+}
+
+
+############################
+# API Destinations & Connections
+############################
+
+variable "api_destinations" {
+  type    = any
+  default = {}
+}
+
+variable "create_api_destinations" {
+  type    = bool
+  default = false
+}
+
+variable "create_connections" {
+  type    = bool
+  default = false
+}
+
+variable "append_connection_postfix" {
+  type    = bool
+  default = false
+}
+
+variable "append_destination_postfix" {
+  type    = bool
+  default = false
+}
+
+############################
+# Archives
+############################
+
+variable "create_archives" {
+  type    = bool
+  default = false
+}
+
+############################
+# Permissions
+############################
+
+variable "create_permissions" {
+  type    = bool
+  default = false
+}
+
+############################
+# Pipes
+############################
+
+variable "pipes" {
+  type    = any
+  default = {}
+}
+
+variable "create_pipes" {
+  type    = bool
+  default = false
+}
+
+variable "append_pipe_postfix" {
+  type    = bool
+  default = false
+}
+
+############################
+# Schedules
+############################
+
+variable "create_schedule_groups" {
+  type    = bool
+  default = true
+}
+
+variable "create_schedules" {
+  type    = bool
+  default = true
+}
+
+variable "append_schedule_group_postfix" {
+  type    = bool
+  default = true
+}
+
+variable "append_schedule_postfix" {
+  type    = bool
+  default = true
+}
+
+############################
+# Schema Discoverer
+############################
+
+variable "create_schemas_discoverer" {
+  type    = bool
+  default = false
+}
+
+############################
+# Event Source
+############################
+
+variable "event_source_name" {
+  type    = string
+  default = null
+}
+
+############################
+# IAM Role Configuration
+############################
+
+variable "create_role" {
+  type    = bool
+  default = false
+}
+
+variable "role_name" {
+  type    = string
+  default = null
+}
+
+variable "role_description" {
+  type    = string
+  default = null
+}
+
+variable "role_path" {
+  type    = string
+  default = null
+}
+
+variable "role_force_detach_policies" {
+  type    = bool
+  default = true
+}
+
+variable "role_permissions_boundary" {
+  type    = string
+  default = null
+}
+
+variable "role_tags" {
+  type    = map(string)
+  default = {}
+}
+
+variable "trusted_entities" {
+  type    = list(string)
+  default = []
+}
+
+############################
+# Attach Policy Flags
+############################
+
+variable "attach_api_destination_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_cloudwatch_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_ecs_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_kinesis_firehose_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_kinesis_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_lambda_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_policies" {
+  type    = bool
+  default = false
+}
+
+variable "attach_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_policy_json" {
+  type    = bool
+  default = false
+}
+
+variable "attach_policy_jsons" {
+  type    = bool
+  default = false
+}
+
+variable "attach_policy_statements" {
+  type    = bool
+  default = false
+}
+
+variable "attach_sfn_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_sns_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_sqs_policy" {
+  type    = bool
+  default = false
+}
+
+variable "attach_tracing_policy" {
+  type    = bool
+  default = false
+}
+
+############################
+# Target ARNs
+############################
+
+variable "cloudwatch_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "ecs_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "kinesis_firehose_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "kinesis_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "lambda_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "sfn_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "sns_target_arns" {
+  type    = list(string)
+  default = []
+}
+
+variable "sqs_target_arns" {
+  type    = list(string)
+  default = []
+}

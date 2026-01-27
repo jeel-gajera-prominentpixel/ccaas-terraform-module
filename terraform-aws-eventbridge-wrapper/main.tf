@@ -1,80 +1,109 @@
 module "eventbridge" {
-  source                         = "../terraform-aws-eventbridge-v4.2.2"
-  bus_name                       = var.bus_name
-  create_bus                     = var.bus_name == "default" ? false : var.create_bus
-  rules                          = var.rules
-  targets                        = var.targets
-  policies                       = var.policies
-  api_destinations               = var.api_destinations
-  policy_json                    = var.policy_json
-  policy_jsons                   = var.policy_jsons
-  number_of_policies             = var.number_of_policies
-  number_of_policy_jsons         = var.number_of_policy_jsons
-  policy                         = var.policy
-  # policy_path                    = var.policy_path
-  policy_statements              = var.policy_statements
-  archives                       = var.archives
-  # bus_description                = var.bus_description
-  # ecs_pass_role_resources        = var.ecs_pass_role_resources
-  event_source_name              = var.event_source_name
-  # kms_key_identifier             = var.kms_key_identifier
+  source = "../terraform-aws-eventbridge-v4.2.2"
+
+  # Core
+  bus_name   = var.bus_name
+  create_bus = var.bus_name == "default" ? false : var.create_bus
+  create     = true
+
+  # Rules & Targets
+  rules   = var.rules
+  targets = var.targets
+
+  # Policies
+  policies              = var.policies
+  policy                = var.policy
+  policy_json           = var.policy_json
+  policy_jsons          = var.policy_jsons
+  policy_statements     = var.policy_statements
+  number_of_policies    = var.number_of_policies
+  number_of_policy_jsons = var.number_of_policy_jsons
+
+  # API Destinations & Connections
+  api_destinations        = var.api_destinations
+  create_api_destinations = var.create_api_destinations
+  connections             = var.connections
+  create_connections      = var.create_connections
+
+  # Archives
+  archives        = var.archives
+  create_archives = var.create_archives
+
+  # Permissions
+  permissions        = var.permissions
+  create_permissions = var.create_permissions
+
+  # Pipes
+  pipes        = var.pipes
+  create_pipes = var.create_pipes
+  append_pipe_postfix = var.append_pipe_postfix
+
+  # Schedules
+  schedules               = var.schedules
+  schedule_groups         = var.schedule_groups
+  schedule_group_timeouts = var.schedule_group_timeouts
+  create_schedule_groups  = var.create_schedule_groups
+  create_schedules        = var.create_schedules
+  append_schedule_group_postfix = var.append_schedule_group_postfix
+  append_schedule_postfix       = var.append_schedule_postfix
+
+  # Rules Creation
+  create_rules   = var.create_rules
+  create_targets = var.create_targets
+  append_rule_postfix = var.append_rule_postfix
+
+  # Schema Discoverer
+  create_schemas_discoverer      = var.create_schemas_discoverer
   schemas_discoverer_description = var.schemas_discoverer_description
-  # sns_kms_arns                   = var.sns_kms_arns
-  trusted_entities               = var.trusted_entities
-  connections                    = var.connections
-  permissions                    = var.permissions
-  pipes                          = var.pipes
-  schedules                      = var.schedules
-  schedule_groups                = var.schedule_groups
-  schedule_group_timeouts        = var.schedule_group_timeouts
-  create_log_delivery            = var.create_log_delivery
-  create_log_delivery_source     = var.create_log_delivery_source
-  create                         = true
-  create_api_destinations        = lookup(var.create, "api_destinations", false)
-  create_archives                = lookup(var.create, "archives", false)
-  create_connections             = lookup(var.create, "connections", false)
-  create_permissions             = lookup(var.create, "permissions", true)
-  create_pipes                   = lookup(var.create, "pipes", true)
-  create_role                    = lookup(var.create, "role", false)
-  create_schedule_groups         = lookup(var.create, "schedule_groups", true)
-  create_schedules               = lookup(var.create, "schedules", true)
-  create_schemas_discoverer      = lookup(var.create, "schemas_discoverer", false)
-  create_rules                   = lookup(var.create, "rules", true)
-  create_targets                 = lookup(var.create, "targets", true)
-  attach_api_destination_policy  = lookup(var.attach, "api_destination_policy", false)
-  attach_cloudwatch_policy       = lookup(var.attach, "cloudwatch_policy", false)
-  attach_ecs_policy              = lookup(var.attach, "ecs_policy", false)
-  attach_kinesis_firehose_policy = lookup(var.attach, "kinesis_firehose_policy", false)
-  attach_kinesis_policy          = lookup(var.attach, "kinesis_policy", false)
-  attach_lambda_policy           = lookup(var.attach, "lambda_policy", false)
-  attach_policies                = lookup(var.attach, "policies", false)
-  attach_policy                  = lookup(var.attach, "policy", false)
-  attach_policy_json             = lookup(var.attach, "policy_json", false)
-  attach_policy_jsons            = lookup(var.attach, "policy_jsons", false)
-  attach_policy_statements       = lookup(var.attach, "policy_statements", false)
-  attach_sfn_policy              = lookup(var.attach, "sfn_policy", false)
-  attach_sns_policy              = lookup(var.attach, "sns_policy", false)
-  attach_sqs_policy              = lookup(var.attach, "sqs_policy", false)
-  attach_tracing_policy          = lookup(var.attach, "tracing_policy", false)
-  cloudwatch_target_arns         = lookup(var.target_arns_configuration, "cloudwatch", [])
-  ecs_target_arns                = lookup(var.target_arns_configuration, "ecs", [])
-  kinesis_firehose_target_arns   = lookup(var.target_arns_configuration, "kinesis_firehose", [])
-  kinesis_target_arns            = lookup(var.target_arns_configuration, "kinesis", [])
-  lambda_target_arns             = lookup(var.target_arns_configuration, "lambda", [])
-  sfn_target_arns                = lookup(var.target_arns_configuration, "sfn", [])
-  sns_target_arns                = lookup(var.target_arns_configuration, "sns", [])
-  sqs_target_arns                = lookup(var.target_arns_configuration, "sqs", [])
-  append_connection_postfix      = lookup(var.append_postfix_configuration, "connection", true)
-  append_destination_postfix     = lookup(var.append_postfix_configuration, "destination", true)
-  append_pipe_postfix            = lookup(var.append_postfix_configuration, "pipe", true)
-  append_rule_postfix            = lookup(var.append_postfix_configuration, "rule", true)
-  append_schedule_group_postfix  = lookup(var.append_postfix_configuration, "schedule_group", true)
-  append_schedule_postfix        = lookup(var.append_postfix_configuration, "schedule", true)
-  role_name                      = lookup(var.role_configuration, "name", null)
-  role_description               = lookup(var.role_configuration, "description", null)
-  role_force_detach_policies     = lookup(var.role_configuration, "force_detach_policies", true)
-  role_path                      = lookup(var.role_configuration, "path", null)
-  role_permissions_boundary      = lookup(var.role_configuration, "permissions_boundary", null)
-  role_tags                      = lookup(var.role_configuration, "tags", {})
-  tags                           = merge(local.tags, var.tags)
+
+  # Event Source
+  event_source_name = var.event_source_name
+
+  # IAM Role
+  create_role                 = var.create_role
+  role_name                   = var.role_name
+  role_description            = var.role_description
+  role_path                   = var.role_path
+  role_force_detach_policies  = var.role_force_detach_policies
+  role_permissions_boundary   = var.role_permissions_boundary
+  role_tags                   = var.role_tags
+  trusted_entities            = var.trusted_entities
+
+  # Attach Policies
+  attach_api_destination_policy  = var.attach_api_destination_policy
+  attach_cloudwatch_policy       = var.attach_cloudwatch_policy
+  attach_ecs_policy              = var.attach_ecs_policy
+  attach_kinesis_firehose_policy = var.attach_kinesis_firehose_policy
+  attach_kinesis_policy          = var.attach_kinesis_policy
+  attach_lambda_policy           = var.attach_lambda_policy
+  attach_policies                = var.attach_policies
+  attach_policy                  = var.attach_policy
+  attach_policy_json             = var.attach_policy_json
+  attach_policy_jsons            = var.attach_policy_jsons
+  attach_policy_statements       = var.attach_policy_statements
+  attach_sfn_policy              = var.attach_sfn_policy
+  attach_sns_policy              = var.attach_sns_policy
+  attach_sqs_policy              = var.attach_sqs_policy
+  attach_tracing_policy          = var.attach_tracing_policy
+
+  # Target ARNs
+  cloudwatch_target_arns       = var.cloudwatch_target_arns
+  ecs_target_arns              = var.ecs_target_arns
+  kinesis_firehose_target_arns = var.kinesis_firehose_target_arns
+  kinesis_target_arns          = var.kinesis_target_arns
+  lambda_target_arns           = var.lambda_target_arns
+  sfn_target_arns              = var.sfn_target_arns
+  sns_target_arns              = var.sns_target_arns
+  sqs_target_arns              = var.sqs_target_arns
+
+  # Postfix Controls
+  append_connection_postfix  = var.append_connection_postfix
+  append_destination_postfix = var.append_destination_postfix
+
+  # Logging
+  create_log_delivery        = var.create_log_delivery
+  create_log_delivery_source = var.create_log_delivery_source
+
+  # Tags
+  tags = merge(local.tags, var.tags)
 }
