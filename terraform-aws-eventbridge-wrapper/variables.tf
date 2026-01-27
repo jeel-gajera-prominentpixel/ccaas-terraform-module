@@ -470,6 +470,11 @@ variable "attach_policy_jsons" {
   default = false
 }
 
+variable "attach_policy_statements" { 
+  type = bool 
+  default = false 
+}
+
 variable "attach_sfn_policy" {
   type    = bool
   default = false
