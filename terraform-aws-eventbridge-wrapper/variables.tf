@@ -425,3 +425,13 @@ variable "sqs_target_arns"        {
   default = [] 
 }
 
+variable "create_schemas_discoverer" { 
+  type = bool 
+  default = false 
+}
+
+variable "schemas_discoverer_description" {
+  description = "Default schemas discoverer description."
+  type        = string
+  default     = "Auto schemas discoverer event"
+}
