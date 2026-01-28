@@ -170,9 +170,19 @@ variable "tags" {
 }
 
 variable "vpc_origin" {
-  description = "Map of CloudFront VPC origins (for private ALB/NLB/EC2)"
-  type        = map(any)
-  default     = null
+  description = "Map of CloudFront VPC origin."
+  type = map(object({
+    name                   = string
+    arn                    = string
+    http_port              = number
+    https_port             = number
+    origin_protocol_policy = string
+    origin_ssl_protocols = object({
+      items    = list(string)
+      quantity = number
+    })
+  }))
+  default = {}
 }
 
 variable "response_headers_policies" {
