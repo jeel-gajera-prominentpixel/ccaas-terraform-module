@@ -21,16 +21,12 @@ module "cloudfront" {
   price_class                          = var.price_class
   realtime_metrics_subscription_status = var.realtime_metrics_subscription_status
   response_headers_policies            = var.response_headers_policies
-  restrictions = try(each.value.restrictions, var.defaults.restrictions, {
-    geo_restriction = {
-      restriction_type = "none"
-    }
-  })
-  retain_on_delete    = var.retain_on_delete
-  staging             = var.staging
-  viewer_certificate  = var.viewer_certificate
-  vpc_origin          = var.vpc_origin
-  wait_for_deployment = var.wait_for_deployment
-  web_acl_id          = var.web_acl_id
-  tags                = merge(local.tags, var.tags)
+  restrictions                         = var.restrictions
+  retain_on_delete                     = var.retain_on_delete
+  staging                              = var.staging
+  viewer_certificate                   = var.viewer_certificate
+  vpc_origin                           = var.vpc_origin
+  wait_for_deployment                  = var.wait_for_deployment
+  web_acl_id                           = var.web_acl_id
+  tags                                 = merge(local.tags, var.tags)
 }
