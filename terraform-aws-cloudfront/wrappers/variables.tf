@@ -132,9 +132,14 @@ variable "ordered_cache_behavior" {
 }
 
 variable "custom_error_response" {
-  description = "One or more custom error response elements"
-  type        = any
-  default     = {}
+  description = "One or more custom error responses"
+  type = list(object({
+    error_code            = number
+    response_code         = number
+    response_page_path    = string
+    error_caching_min_ttl = number
+  }))
+  default = []
 }
 
 variable "default_root_object" {
