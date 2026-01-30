@@ -60,10 +60,6 @@ output "cloudfront_origin_access_controls" {
   description = "The origin access controls created"
   value       = module.cloudfront.cloudfront_origin_access_controls
 }
-output "cloudfront_origin_access_controls_id" {
-  description = "The origin access controls created"
-  value       = module.cloudfront.cloudfront_origin_access_controls.id
-}
 
 ################################################################################
 # VPC Origin
