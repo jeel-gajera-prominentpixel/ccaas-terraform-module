@@ -75,6 +75,7 @@ variable "resource_paths" {
     http_method = string
     integration_http_method = string
     type                   = string
+    status_code = string
   }))
   default = {
     "/proxy" = {
@@ -82,17 +83,19 @@ variable "resource_paths" {
       http_method = "POST"
       integration_http_method = "POST"
       type = "AWS_PROXY"
+      status_code = null
     }
     "/proxy2" = {
       lambda_arn = "arn:aws:lambda:us-west-2:767252029631:function:Test-lambda-deployment"
       http_method = "POST"
       integration_http_method = "POST"
       type = "AWS_PROXY"
+      status_code = null
     }
   }
 }
 
-variable "status_code" {
+variable "root_status_code" {
   description = "Status code for method response"
   type        = string
   default     = "200"

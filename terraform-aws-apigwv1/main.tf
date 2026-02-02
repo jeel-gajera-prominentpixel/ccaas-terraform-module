@@ -39,7 +39,7 @@ resource "aws_api_gateway_method_response" "root_method_response" {
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = aws_api_gateway_rest_api.this.root_resource_id
   http_method = aws_api_gateway_method.root_method.http_method
-  status_code = var.status_code
+  status_code = var.root_status_code
 }
 
 
@@ -79,6 +79,14 @@ resource "aws_lambda_permission" "api_gateway_invoke_permission" {
   function_name = regex("function:([^/]+)", each.value.uri)[0]
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/*"
+}
+
+resource "aws_api_gateway_method_response" "method_response" {
+  for_each    = aws_api_gateway_resource.api_resources
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = each.value.resource_id
+  http_method = each.value.http_method
+  status_code = each.value.status_code
 }
 
 resource "aws_api_gateway_deployment" "this" {
