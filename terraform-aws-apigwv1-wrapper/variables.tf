@@ -93,3 +93,9 @@ variable "resource_paths" {
     }
   }
 }
+
+variable "status_code" {
+  description = "Status code for method response"
+  type        = string
+  default     = "200"
+}

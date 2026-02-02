@@ -35,6 +35,13 @@ resource "aws_lambda_permission" "root_invoke_permission" {
   source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/${aws_api_gateway_method.root_method.http_method}/"
 }
 
+resource "aws_api_gateway_method_response" "root_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = aws_api_gateway_rest_api.this.root_resource_id
+  http_method = aws_api_gateway_method.root_method.http_method
+  status_code = var.status_code
+}
+
 
 
 # API Gateway Resource
