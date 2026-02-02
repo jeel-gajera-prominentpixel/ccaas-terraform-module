@@ -86,7 +86,7 @@ resource "aws_api_gateway_method_response" "method_response" {
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = each.value.resource_id
   http_method = each.value.http_method
-  status_code = each.value.status_code
+  status_code = "200"
 }
 
 resource "aws_api_gateway_deployment" "this" {
