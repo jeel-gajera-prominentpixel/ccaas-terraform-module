@@ -84,8 +84,8 @@ resource "aws_lambda_permission" "api_gateway_invoke_permission" {
 resource "aws_api_gateway_method_response" "method_response" {
   for_each    = aws_api_gateway_resource.api_resources
   rest_api_id = aws_api_gateway_rest_api.this.id
-  resource_id = each.value.resource_id
-  http_method = each.value.http_method
+  resource_id = each.value.id
+  http_method = var.resource_paths[each.key].http_method
   status_code = "200"
 }
 
