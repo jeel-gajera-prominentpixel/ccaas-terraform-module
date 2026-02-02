@@ -13,7 +13,6 @@ module "apigv1" {
   enable_waf_association       = var.enable_waf_association
   web_acl_arn                  = var.web_acl_arn
   resource_paths               = var.resource_paths
-  status_code                  = var.status_code
   tags = merge(local.tags, {
     Name = var.name
   })
