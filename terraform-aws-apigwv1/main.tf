@@ -28,10 +28,6 @@ resource "aws_api_gateway_deployment" "rest_api_deployment" {
   triggers = {
     redeployment = sha1(jsonencode([
       aws_api_gateway_rest_api.rest_api[0].body,
-      aws_api_gateway_rest_api.rest_api[0].root_resource_id,
-      aws_api_gateway_method.rest_api_method[0].id,
-      aws_api_gateway_integration.rest_api_integration[0].id,
-      aws_api_gateway_integration.rest_api_integration[0].id,
     ]))
   }
   lifecycle {
@@ -81,7 +77,7 @@ resource "aws_lambda_permission" "root_invoke_permission" {
   action        = "lambda:InvokeFunction"
   function_name = element(split(":", var.integration_uri), 6)
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.rest_api[0].execution_arn}/${aws_api_gateway_method.api_methods[0].http_method}/"
+  source_arn    = "${aws_api_gateway_rest_api.rest_api[0].execution_arn}/*/*"
 }
 
 
