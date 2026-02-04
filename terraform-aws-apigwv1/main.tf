@@ -67,13 +67,21 @@ resource "aws_api_gateway_method" "api_methods" {
 ##----------------------------------------------------------------------------------
 
 resource "aws_api_gateway_integration" "api_integrations" {
-  for_each                = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? var.api_resources : {}
+  count                   = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? 1 : 0
   rest_api_id             = aws_api_gateway_rest_api.rest_api[0].id
   resource_id             = aws_api_gateway_resource.api_resources[each.key].id
   http_method             = aws_api_gateway_method.api_methods[each.key].http_method
   integration_http_method = var.integration_http_method
   type                    = var.gateway_integration_type
-  uri                     = each.value.uri
+  uri                     = "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${var.integration_uri}/invocations"
+}
+
+# Lambda Permission for API Gateway to Invoke Root Function
+resource "aws_lambda_permission" "root_invoke_permission" {
+  action        = "lambda:InvokeFunction"
+  function_name = element(split(":", var.integration_uri), 6)
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/${aws_api_gateway_method.root_method.http_method}/"
 }
 
 
@@ -94,15 +102,23 @@ resource "aws_api_gateway_method" "rest_api_method" {
 ##----------------------------------------------------------------------------------
 
 resource "aws_api_gateway_integration" "rest_api_integration" {
-  count                   = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? 1 : 0
+  for_each                = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? var.api_resources : {}
   rest_api_id             = aws_api_gateway_rest_api.rest_api[0].id
   resource_id             = aws_api_gateway_method.rest_api_method[0].resource_id
   http_method             = aws_api_gateway_method.rest_api_method[0].http_method
   integration_http_method = var.integration_http_method
   type                    = var.gateway_integration_type
-  uri                     = var.integration_uri
+  uri                     = "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${each.value.uri}/invocations"
 }
 
+# Lambda Permission for API Gateway to Invoke Root Function
+resource "aws_lambda_permission" "invoke_permission" {
+  for_each      = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? var.api_resources : {}
+  action        = "lambda:InvokeFunction"
+  function_name = element(split(":", each.value.uri), 6)
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/${aws_api_gateway_method.root_method.http_method}/"
+}
 
 ##----------------------------------------------------------------------------------
 ## Below resource will Manages an Amazon REST API Gateway stage.
