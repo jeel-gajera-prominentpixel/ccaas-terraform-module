@@ -68,6 +68,7 @@ resource "aws_api_gateway_method" "api_methods" {
 
 resource "aws_api_gateway_integration" "api_integrations" {
   count                   = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? 1 : 0
+  for_each                = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? var.api_resources : {}
   rest_api_id             = aws_api_gateway_rest_api.rest_api[0].id
   resource_id             = aws_api_gateway_resource.api_resources[each.key].id
   http_method             = aws_api_gateway_method.api_methods[each.key].http_method
