@@ -10,42 +10,10 @@ resource "aws_api_gateway_rest_api" "rest_api" {
   tags        = var.tags
 
   endpoint_configuration {
-    types            = [var.rest_api_endpoint_type]
-    vpc_endpoint_ids = var.rest_api_endpoint_type == "PRIVATE" ? (var.create_vpc_endpoint ? [aws_vpc_endpoint.rest_api_private[0].id] : var.vpc_endpoint_id) : null
-  }
+  types = [var.rest_api_endpoint_type]
+
 }
 
-##--------------------------------------------------------------------------------
-# Resource Policy for [aws_api_gateway_rest_api.rest_api]
-##--------------------------------------------------------------------------------
-resource "aws_api_gateway_rest_api_policy" "rest_api_resource_policy" {
-  count = var.enabled && var.create_rest_api && var.rest_api_endpoint_type == "PRIVATE" ? 1 : 0
-
-  rest_api_id = aws_api_gateway_rest_api.rest_api[0].id
-  policy      = var.rest_api_resource_policy != "" ? var.rest_api_resource_policy : <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Deny",
-            "Principal": "*",
-            "Action": "execute-api:Invoke",
-            "Resource": "${aws_api_gateway_rest_api.rest_api[0].execution_arn}/*",
-            "Condition": {
-                "StringNotEquals": {
-                    "aws:sourceVpce": "${aws_vpc_endpoint.rest_api_private[0].id}"
-                }
-            }
-        },
-        {
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "execute-api:Invoke",
-            "Resource": "${aws_api_gateway_rest_api.rest_api[0].execution_arn}/*"
-        }
-    ]
-}  
-  EOF
 }
 
 ##----------------------------------------------------------------------------------

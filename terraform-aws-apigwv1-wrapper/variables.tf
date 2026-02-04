@@ -162,5 +162,5 @@ variable "api_resources" {
 
 variable "xray_tracing_enabled" {
   type    = bool
-  default = true
+  default = false
 }

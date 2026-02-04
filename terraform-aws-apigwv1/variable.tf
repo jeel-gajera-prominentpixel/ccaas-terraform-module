@@ -368,8 +368,8 @@ variable "rest_api_base_path" {
   description = "Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain."
 }
 
-variable "vpc_endpoint_id" {
-  type        = string
-  default     = ""
-  description = "ID of the vpc endpoint. Only applicable when "
+variable "vpc_endpoint_ids" {
+  type        = list(string)
+  default     = []
+  description = "VPC endpoint IDs for PRIVATE API Gateway"
 }
