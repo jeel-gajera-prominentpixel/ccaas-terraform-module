@@ -1,4 +1,3 @@
-
 module "apigv1" {
   source                       = "../terraform-aws-apigwv1"
   api_name                     = var.name
@@ -6,6 +5,7 @@ module "apigv1" {
   root_integration_http_method = var.root_integration_http_method
   root_integration_type        = var.root_integration_type
   root_lambda_arn              = var.root_lambda_arn
+  root_status_code             = var.root_status_code
   description                  = var.description
   types                        = var.types
   authorization                = var.authorization

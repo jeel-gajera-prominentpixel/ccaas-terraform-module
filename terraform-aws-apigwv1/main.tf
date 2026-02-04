@@ -35,11 +35,36 @@ resource "aws_lambda_permission" "root_invoke_permission" {
   source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/${aws_api_gateway_method.root_method.http_method}/"
 }
 
+# Root Method Response
 resource "aws_api_gateway_method_response" "root_method_response" {
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = aws_api_gateway_rest_api.this.root_resource_id
   http_method = aws_api_gateway_method.root_method.http_method
   status_code = var.root_status_code
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# Root Integration Response
+resource "aws_api_gateway_integration_response" "root_integration_response" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = aws_api_gateway_rest_api.this.root_resource_id
+  http_method = aws_api_gateway_method.root_method.http_method
+  status_code = aws_api_gateway_method_response.root_method_response.status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
+
+  depends_on = [
+    aws_api_gateway_integration.root_lambda_integration
+  ]
 }
 
 
@@ -81,12 +106,38 @@ resource "aws_lambda_permission" "api_gateway_invoke_permission" {
   source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/*"
 }
 
+# Method Response for Each Resource
 resource "aws_api_gateway_method_response" "method_response" {
   for_each    = aws_api_gateway_resource.api_resources
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = each.value.id
   http_method = var.resource_paths[each.key].http_method
-  status_code = "200"
+  status_code = var.resource_paths[each.key].status_code
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# Integration Response for Each Resource
+resource "aws_api_gateway_integration_response" "integration_response" {
+  for_each    = aws_api_gateway_resource.api_resources
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = each.value.id
+  http_method = var.resource_paths[each.key].http_method
+  status_code = aws_api_gateway_method_response.method_response[each.key].status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
+
+  depends_on = [
+    aws_api_gateway_integration.lambda_integration
+  ]
 }
 
 resource "aws_api_gateway_deployment" "this" {
@@ -101,7 +152,10 @@ resource "aws_api_gateway_deployment" "this" {
   }
   depends_on = [
     aws_api_gateway_integration.root_lambda_integration,  # Ensure integration is created first
-    aws_api_gateway_method.root_method            # Ensure method is created first
+    aws_api_gateway_method.root_method,            # Ensure method is created first
+    aws_api_gateway_integration_response.root_integration_response,
+    aws_api_gateway_integration.lambda_integration,
+    aws_api_gateway_integration_response.integration_response
   ]
 }
 
