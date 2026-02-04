@@ -40,7 +40,7 @@ variable "description" {
   type        = string
 }
 
-variable "types" {
+variable "rest_api_endpoint_type" {
   description = "Type of the API Gateway Endpoint Available values are EDGE, REGIONAL and PRIVATE. Default is REGIONAL"
   type        = string
   default     = "REGIONAL"
@@ -95,6 +95,16 @@ variable "resource_paths" {
       status_code             = null
     }
   }
+}
+
+variable "api_resources" {
+  type = map(object({
+    path_part  = string
+    http_method = string
+    uri         = string
+  }))
+  default     = {}
+  description = "REST API resources and methods"
 }
 
 variable "root_status_code" {
