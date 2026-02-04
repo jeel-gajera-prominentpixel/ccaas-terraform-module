@@ -30,6 +30,14 @@ resource "aws_api_gateway_deployment" "rest_api_deployment" {
       aws_api_gateway_rest_api.rest_api[0].body,
     ]))
   }
+
+  depends_on = [
+    aws_api_gateway_method.rest_api_method,
+    aws_api_gateway_integration.rest_api_integration,
+    aws_api_gateway_method.api_methods,
+    aws_api_gateway_integration.api_integrations
+  ]
+  
   lifecycle {
     create_before_destroy = true
   }
