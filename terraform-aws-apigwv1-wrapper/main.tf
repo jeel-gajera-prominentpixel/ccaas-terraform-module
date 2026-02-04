@@ -1,5 +1,5 @@
 module "apigateway_v1" {
-  source = "../terraform-aws-apigateway-v1" # real module path
+  source = "../terraform-aws-apigwv1" # real module path
 
   enabled         = true
   create_rest_api = true
