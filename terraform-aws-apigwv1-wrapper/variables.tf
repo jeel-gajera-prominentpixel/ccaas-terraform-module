@@ -97,18 +97,70 @@ variable "resource_paths" {
   }
 }
 
-variable "api_resources" {
-  type = map(object({
-    path_part  = string
-    http_method = string
-    uri         = string
-  }))
-  default     = {}
-  description = "REST API resources and methods"
-}
 
 variable "root_status_code" {
   description = "Status code for root method response"
   type        = string
   default     = null
+}
+
+variable "create_rest_api_gateway_resource" {
+  type    = bool
+  default = true
+}
+
+variable "create_rest_api_gateway_method" {
+  type    = bool
+  default = true
+}
+
+variable "create_rest_api_gateway_integration" {
+  type    = bool
+  default = true
+}
+
+variable "create_rest_api_deployment" {
+  type    = bool
+  default = true
+}
+
+variable "create_rest_api_gateway_stage" {
+  type    = bool
+  default = true
+}
+
+variable "rest_api_stage_name" {
+  type = string
+}
+
+variable "http_method" {
+  type    = string
+  default = "ANY"
+}
+
+
+variable "gateway_integration_type" {
+  type = string
+}
+
+variable "integration_http_method" {
+  type = string
+}
+
+variable "integration_uri" {
+  type = string
+}
+
+variable "api_resources" {
+  type = map(object({
+    path_part   = string
+    http_method = string
+    uri         = string
+  }))
+  default = {}
+}
+
+variable "xray_tracing_enabled" {
+  type    = bool
+  default = true
 }
