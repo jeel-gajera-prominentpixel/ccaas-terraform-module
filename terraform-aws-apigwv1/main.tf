@@ -111,15 +111,6 @@ resource "aws_api_gateway_integration" "rest_api_integration" {
   uri                     = "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${each.value.uri}/invocations"
 }
 
-# Lambda Permission for API Gateway to Invoke Root Function
-resource "aws_lambda_permission" "invoke_permission" {
-  for_each      = var.enabled && var.create_rest_api && var.create_rest_api_gateway_integration ? var.api_resources : {}
-  action        = "lambda:InvokeFunction"
-  function_name = element(split(":", each.value.uri), 6)
-  principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/${aws_api_gateway_method.root_method.http_method}/"
-}
-
 ##----------------------------------------------------------------------------------
 ## Below resource will Manages an Amazon REST API Gateway stage.
 ##----------------------------------------------------------------------------------
