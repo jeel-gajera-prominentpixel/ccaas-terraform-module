@@ -74,14 +74,6 @@ resource "aws_api_gateway_integration" "api_integrations" {
   integration_http_method = var.integration_http_method
   type                    = var.gateway_integration_type
   uri                     = each.value.uri
-  connection_type         = var.connection_rest_api_type
-  connection_id           = var.connection_id
-  credentials             = var.credentials
-  request_templates       = var.request_templates
-  request_parameters      = var.request_parameters
-  cache_namespace         = var.cache_namespace
-  content_handling        = var.content_handling
-  cache_key_parameters    = var.cache_key_parameters
 }
 
 
@@ -107,16 +99,7 @@ resource "aws_api_gateway_integration" "rest_api_integration" {
   resource_id             = aws_api_gateway_method.rest_api_method[0].resource_id
   http_method             = aws_api_gateway_method.rest_api_method[0].http_method
   integration_http_method = var.integration_http_method
-  connection_type         = var.connection_rest_api_type
-  connection_id           = var.connection_id
-  credentials             = var.credentials
-  request_templates       = var.request_templates
-  request_parameters      = var.request_parameters
-  cache_namespace         = var.cache_namespace
-  content_handling        = var.content_handling
-  cache_key_parameters    = var.cache_key_parameters
   type                    = var.gateway_integration_type
-  timeout_milliseconds    = var.timeout_milliseconds
   uri                     = var.integration_uri
 }
 
@@ -131,35 +114,6 @@ resource "aws_api_gateway_stage" "rest_api_stage" {
   deployment_id         = aws_api_gateway_deployment.rest_api_deployment[0].id
   rest_api_id           = aws_api_gateway_rest_api.rest_api[0].id
   stage_name            = var.rest_api_stage_name
-  cache_cluster_enabled = var.cache_cluster_enabled
-  cache_cluster_size    = var.cache_cluster_size
-  client_certificate_id = var.client_certificate_id
-  documentation_version = var.documentation_version
-  variables             = var.stage_variables
-  xray_tracing_enabled  = var.xray_tracing_enabled
-
-  dynamic "canary_settings" {
-    for_each = var.canary_settings
-    content {
-      percent_traffic          = canary_settings.percent_traffic.value
-      stage_variable_overrides = canary_settings.stage_variable_overrides.value
-      use_stage_cache          = canary_settings.use_stage_cache.value
-    }
-  }
-
-  dynamic "access_log_settings" {
-    for_each = var.enable_access_logs == true ? [1] : []
-
-    content {
-      destination_arn = aws_cloudwatch_log_group.rest_api_log[0].arn
-      format          = replace(var.log_format, "\n", "")
-    }
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-
   tags = var.tags
 }
 
@@ -173,8 +127,6 @@ resource "aws_api_gateway_method_response" "rest_api_method_response" {
   resource_id         = aws_api_gateway_rest_api.rest_api[0].root_resource_id
   http_method         = aws_api_gateway_method.rest_api_method[0].http_method
   status_code         = var.status_code
-  response_models     = var.response_models
-  response_parameters = var.response_parameters
 }
 
 
@@ -188,63 +140,8 @@ resource "aws_api_gateway_integration_response" "rest_api_integration_response" 
   resource_id         = aws_api_gateway_method.rest_api_method[0].resource_id
   http_method         = aws_api_gateway_method.rest_api_method[0].http_method
   status_code         = aws_api_gateway_method_response.rest_api_method_response[0].status_code
-  content_handling    = var.content_handling
-  response_parameters = var.integration_response_parameters
   depends_on = [
     aws_api_gateway_method.rest_api_method,
     aws_api_gateway_integration.rest_api_integration
   ]
-}
-
-##----------------------------------------------------------------------------------
-## Below resource will Manages an Amazon REST API Gateway Authorizer.
-##----------------------------------------------------------------------------------
-
-resource "aws_api_gateway_authorizer" "rest_api_authorizer" {
-  count                            = var.enabled && var.create_rest_api_gateway_authorizer && var.create_rest_api ? 1 : 0
-  name                             = var.gateway_authorizer
-  rest_api_id                      = aws_api_gateway_rest_api.rest_api[0].id
-  authorizer_uri                   = var.integration_uri
-  authorizer_credentials           = var.authorizer_iam_role != "" ? var.authorizer_iam_role : aws_iam_role.rest_api_iam_role[0].arn
-  identity_source                  = var.identity_source
-  type                             = var.type
-  authorizer_result_ttl_in_seconds = var.authorizer_result_ttl_in_seconds
-  provider_arns                    = var.provider_arns
-}
-
-##----------------------------------------------------------------------------------
-## Below resource will Manages an Amazon API IAM role.
-##----------------------------------------------------------------------------------
-resource "aws_iam_role" "rest_api_iam_role" {
-  count              = var.enabled && var.create_rest_api_gateway_authorizer && var.create_rest_api ? 1 : 0
-  name               = format("%s-iam-role", var.name)
-  path               = "/"
-  assume_role_policy = var.rest_api_assume_role_policy != "" ? var.rest_api_assume_role_policy : <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "apigateway.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": "Terraform"
-    }
-  ]
-}
-EOF
-
-}
-
-##----------------------------------------------------------------------------------
-## Below resource will Manages an Amazon REST API Base Path Mapping.
-##----------------------------------------------------------------------------------
-
-resource "aws_api_gateway_base_path_mapping" "rest_api_base_path" {
-  count       = var.enabled && var.create_rest_api_gateway_authorizer && var.create_rest_api ? 1 : 0
-  api_id      = aws_api_gateway_rest_api.rest_api[0].id
-  domain_name = var.domain_name
-  base_path   = var.rest_api_base_path
-  stage_name  = var.rest_api_stage_name
 }
