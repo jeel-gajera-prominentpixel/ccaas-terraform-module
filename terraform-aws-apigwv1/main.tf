@@ -24,7 +24,6 @@ resource "aws_api_gateway_deployment" "rest_api_deployment" {
   count             = var.enabled && var.create_rest_api && var.create_rest_api_deployment ? 1 : 0
   rest_api_id       = aws_api_gateway_rest_api.rest_api[0].id
   description       = var.api_deployment_description
-  stage_description = var.stage_description
   variables         = var.rest_variables
   triggers = {
     redeployment = sha1(jsonencode([
@@ -211,6 +210,31 @@ resource "aws_api_gateway_authorizer" "rest_api_authorizer" {
   type                             = var.type
   authorizer_result_ttl_in_seconds = var.authorizer_result_ttl_in_seconds
   provider_arns                    = var.provider_arns
+}
+
+##----------------------------------------------------------------------------------
+## Below resource will Manages an Amazon API IAM role.
+##----------------------------------------------------------------------------------
+resource "aws_iam_role" "rest_api_iam_role" {
+  count              = var.enabled && var.create_rest_api_gateway_authorizer && var.create_rest_api ? 1 : 0
+  name               = format("%s-iam-role", var.name)
+  path               = "/"
+  assume_role_policy = var.rest_api_assume_role_policy != "" ? var.rest_api_assume_role_policy : <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": "Terraform"
+    }
+  ]
+}
+EOF
+
 }
 
 ##----------------------------------------------------------------------------------

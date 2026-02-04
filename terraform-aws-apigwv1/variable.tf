@@ -373,3 +373,10 @@ variable "vpc_endpoint_ids" {
   default     = []
   description = "VPC endpoint IDs for PRIVATE API Gateway"
 }
+
+
+variable "rest_api_assume_role_policy" {
+  type        = string
+  default     = ""
+  description = "Custome Trust Relationship Policy for Authorizer IAMRole."
+}
