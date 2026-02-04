@@ -40,7 +40,7 @@ variable "description" {
   type        = string
 }
 
-variable "rest_api_endpoint_type" {
+variable "types" {
   description = "Type of the API Gateway Endpoint Available values are EDGE, REGIONAL and PRIVATE. Default is REGIONAL"
   type        = string
   default     = "REGIONAL"
@@ -77,7 +77,6 @@ variable "resource_paths" {
     http_method             = string
     integration_http_method = string
     type                    = string
-    status_code             = string
   }))
   default = {
     "/proxy" = {
@@ -85,82 +84,12 @@ variable "resource_paths" {
       http_method             = "POST"
       integration_http_method = "POST"
       type                    = "AWS_PROXY"
-      status_code             = null
     }
     "/proxy2" = {
       lambda_arn              = "arn:aws:lambda:us-west-2:767252029631:function:Test-lambda-deployment"
       http_method             = "POST"
       integration_http_method = "POST"
       type                    = "AWS_PROXY"
-      status_code             = null
     }
   }
-}
-
-
-variable "root_status_code" {
-  description = "Status code for root method response"
-  type        = string
-  default     = null
-}
-
-variable "create_rest_api_gateway_resource" {
-  type    = bool
-  default = true
-}
-
-variable "create_rest_api_gateway_method" {
-  type    = bool
-  default = true
-}
-
-variable "create_rest_api_gateway_integration" {
-  type    = bool
-  default = true
-}
-
-variable "create_rest_api_deployment" {
-  type    = bool
-  default = true
-}
-
-variable "create_rest_api_gateway_stage" {
-  type    = bool
-  default = true
-}
-
-variable "rest_api_stage_name" {
-  type = string
-}
-
-variable "http_method" {
-  type    = string
-  default = "ANY"
-}
-
-
-variable "gateway_integration_type" {
-  type = string
-}
-
-variable "integration_http_method" {
-  type = string
-}
-
-variable "integration_uri" {
-  type = string
-}
-
-variable "api_resources" {
-  type = map(object({
-    path_part   = string
-    http_method = string
-    uri         = string
-  }))
-  default = {}
-}
-
-variable "xray_tracing_enabled" {
-  type    = bool
-  default = false
 }
