@@ -1,4 +1,4 @@
-module "apigateway_v1" {
+module "apigv1" {
   source = "../terraform-aws-apigwv1" # real module path
 
   enabled         = true
