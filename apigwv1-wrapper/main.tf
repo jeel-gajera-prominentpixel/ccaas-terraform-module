@@ -1,31 +1,36 @@
-module "rest_api_gateway" {
-  source = "../apigwv1" 
-
-  api_name = var.api_name
-
-  root_methods = {
-    ANY = {
-      authorization = "NONE"
-      lambda_arn    = var.lambda_arn
-
-      method_responses = {
-        "200" = {
-          response_models = {
-            "application/json" = "Empty"
-          }
-
-          response_parameters = {
-            "method.response.header.Access-Control-Allow-Origin" = true
-          }
-        }
-      }
-    }
-  }
-
-  proxy_methods = {
-    ANY = {
-      authorization = "NONE"
-      lambda_arn    = var.lambda_arn
-    }
-  }
+module "apigv1" {
+  source      = "../apigwv1"
+  create_api  = var.create_api
+  api_name    = var.name
+  rest_api_id = var.rest_api_id
+  #rest_api_resource_id                = var.rest_api_resource_id
+  rest_api_execution_arn              = var.rest_api_execution_arn
+  create_child_resource               = var.create_child_resource
+  parent_id                           = var.parent_id
+  path_part                           = var.path_part
+  stage_name                          = var.stage_name
+  create_root_method                  = var.create_root_method
+  create_method                       = var.create_method
+  root_integration_http_method        = var.root_integration_http_method
+  root_integration_type               = var.root_integration_type
+  root_lambda_arn                     = var.root_lambda_arn
+  description                         = var.description
+  types                               = var.types
+  authorization                       = var.authorization
+  create_authorizer                   = var.create_authorizer
+  authorizer_name                     = var.authorizer_name
+  authorizer_lambda_arn               = var.authorizer_lambda_arn
+  identity_source                     = var.identity_source
+  authorizer_result_ttl_in_seconds    = var.authorizer_result_ttl_in_seconds
+  resource_root_path                  = var.resource_root_path
+  enable_waf_association              = var.enable_waf_association
+  web_acl_arn                         = var.web_acl_arn
+  resource_paths                      = var.resource_paths
+  root_resource_request_parameters    = var.root_resource_request_parameters
+  root_integration_request_parameters = var.root_integration_request_parameters
+  enable_logs                         = var.enable_logs
+  #authorizer_id                       = var.authorizer_id
+  enable_binary_media_types = var.enable_binary_media_types
+  binary_media_types        = var.binary_media_types
+  tags                      = merge(var.tags, { "map-migrated" = "123456" })
 }
