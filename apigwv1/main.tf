@@ -195,8 +195,25 @@ resource "aws_lambda_permission" "authorizer" {
   source_arn    = "${var.rest_api_execution_arn}/*"
 }
 
-# Method Response Configuration
-resource "aws_api_gateway_method_response" "method_response" {
+# Method Response Configuration for Root Method
+resource "aws_api_gateway_method_response" "root_method_response" {
+  for_each = var.create_root_method ? var.root_method_response_params : {}
+
+  rest_api_id = aws_api_gateway_rest_api.this[0].id
+  resource_id = aws_api_gateway_rest_api.this[0].root_resource_id
+  http_method = var.resource_root_path
+  status_code = each.value.status_code
+
+  response_parameters = each.value.response_parameters
+  response_models     = each.value.response_models
+
+  depends_on = [
+    aws_api_gateway_method.root_method
+  ]
+}
+
+# Method Response Configuration for Resource Methods
+resource "aws_api_gateway_method_response" "resource_method_response" {
   for_each = var.method_response_params
 
   rest_api_id = var.rest_api_id
@@ -208,6 +225,43 @@ resource "aws_api_gateway_method_response" "method_response" {
   response_models     = each.value.response_models
 
   depends_on = [
-    aws_api_gateway_method.api_method
+    aws_api_gateway_method.resource_methods
+  ]
+}
+
+# Integration Response Configuration for Root Method
+resource "aws_api_gateway_integration_response" "root_integration_response" {
+  for_each = var.create_root_method ? var.root_integration_response_params : {}
+
+  rest_api_id = aws_api_gateway_rest_api.this[0].id
+  resource_id = aws_api_gateway_rest_api.this[0].root_resource_id
+  http_method = aws_api_gateway_method.root_method[0].http_method
+  status_code = each.value.status_code
+
+  response_parameters = lookup(each.value, "response_parameters", {})
+
+  depends_on = [
+    aws_api_gateway_integration.root_lambda_integration,
+    aws_api_gateway_method_response.root_method_response
+  ]
+}
+
+# Integration Response Configuration for Resource Methods
+resource "aws_api_gateway_integration_response" "resource_integration_response" {
+  for_each = {
+    for path, config in var.resource_paths :
+    path => config if lookup(config, "integration_response_configuration", null) != null
+  }
+
+  rest_api_id = var.rest_api_id
+  resource_id = each.value.resource_id
+  http_method = each.value.http_method
+  status_code = each.value.integration_response_configuration.status_code
+
+  response_parameters = lookup(each.value.integration_response_configuration, "response_parameters", {})
+
+  depends_on = [
+    aws_api_gateway_integration.lambda_integration,
+    aws_api_gateway_method_response.resource_method_response
   ]
 }

@@ -190,6 +190,28 @@ variable "binary_media_types" {
   description = "List of binary media types to configure (used only if enabled)"
 }
 
+# For root method responses
+variable "root_method_response_params" {
+  description = "Method response configuration for root method"
+  type = map(object({
+    status_code         = string
+    response_parameters = map(bool)
+    response_models     = optional(map(string), {})
+  }))
+  default = {}
+}
+
+# For root integration responses
+variable "root_integration_response_params" {
+  description = "Integration response configuration for root method"
+  type = map(object({
+    status_code         = string
+    response_parameters = optional(map(string), {})
+  }))
+  default = {}
+}
+
+# For resource method responses (existing)
 variable "method_response_params" {
   description = "Method response configuration for each resource path"
   type = map(object({

@@ -32,6 +32,8 @@ module "apigv1" {
   #authorizer_id                      = var.authorizer_id
   enable_binary_media_types           = var.enable_binary_media_types
   binary_media_types                  = var.binary_media_types
-  method_response_params              = var.method_response_params
+  root_method_response_params        = var.root_method_response_params
+  root_integration_response_params   = var.root_integration_response_params
+  method_response_params             = var.method_response_params
   tags                                = merge(var.tags, { "map-migrated" = "123456" })
 }
