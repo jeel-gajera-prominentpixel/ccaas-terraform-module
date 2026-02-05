@@ -28,7 +28,7 @@ resource "aws_api_gateway_integration" "root_lambda_integration" {
   http_method             = aws_api_gateway_method.root_method[0].http_method
   integration_http_method = var.root_integration_http_method
   type                    = var.root_integration_type
-  uri                     = var.resource_paths[each.key].type == "MOCK" ? null : "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${var.root_lambda_arn}/invocations"
+  uri                     = var.root_integration_type == "MOCK" ? null : "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${var.root_lambda_arn}/invocations"
   request_parameters      = var.root_integration_request_parameters
 }
 resource "aws_api_gateway_resource" "api_resources" {
