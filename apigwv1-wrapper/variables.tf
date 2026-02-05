@@ -190,3 +190,13 @@ variable "binary_media_types" {
   default     = []
   description = "List of binary media types to configure (if enabled)"
 }
+
+variable "method_response_params" {
+  description = "Method response configuration for each resource path"
+  type = map(object({
+    status_code         = string
+    response_parameters = map(bool)
+    response_models     = optional(map(string), {})
+  }))
+  default = {}
+}

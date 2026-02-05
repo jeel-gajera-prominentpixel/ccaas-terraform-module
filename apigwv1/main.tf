@@ -194,3 +194,20 @@ resource "aws_lambda_permission" "authorizer" {
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${var.rest_api_execution_arn}/*"
 }
+
+# Method Response Configuration
+resource "aws_api_gateway_method_response" "method_response" {
+  for_each = var.method_response_params
+
+  rest_api_id = var.rest_api_id
+  resource_id = var.resource_paths[each.key].resource_id
+  http_method = var.resource_paths[each.key].http_method
+  status_code = each.value.status_code
+
+  response_parameters = each.value.response_parameters
+  response_models     = each.value.response_models
+
+  depends_on = [
+    aws_api_gateway_method.api_method
+  ]
+}

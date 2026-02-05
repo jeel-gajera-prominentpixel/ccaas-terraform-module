@@ -1,9 +1,9 @@
 module "apigv1" {
-  source      = "../apigwv1"
-  create_api  = var.create_api
-  api_name    = var.name
-  rest_api_id = var.rest_api_id
-  #rest_api_resource_id                = var.rest_api_resource_id
+  source                              = "../apigwv1"
+  create_api                          = var.create_api
+  api_name                            = var.name
+  rest_api_id                         = var.rest_api_id
+  #rest_api_resource_id               = var.rest_api_resource_id
   rest_api_execution_arn              = var.rest_api_execution_arn
   create_child_resource               = var.create_child_resource
   parent_id                           = var.parent_id
@@ -29,8 +29,9 @@ module "apigv1" {
   root_resource_request_parameters    = var.root_resource_request_parameters
   root_integration_request_parameters = var.root_integration_request_parameters
   enable_logs                         = var.enable_logs
-  #authorizer_id                       = var.authorizer_id
-  enable_binary_media_types = var.enable_binary_media_types
-  binary_media_types        = var.binary_media_types
-  tags                      = merge(var.tags, { "map-migrated" = "123456" })
+  #authorizer_id                      = var.authorizer_id
+  enable_binary_media_types           = var.enable_binary_media_types
+  binary_media_types                  = var.binary_media_types
+  method_response_params              = var.method_response_params
+  tags                                = merge(var.tags, { "map-migrated" = "123456" })
 }
