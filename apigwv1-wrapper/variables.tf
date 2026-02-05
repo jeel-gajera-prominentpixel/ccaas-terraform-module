@@ -13,7 +13,6 @@ variable "tags" {
 variable "stage_name" {
   description = "Stage Name of the API Gateway"
   type        = string
-  default     = "dev"
 }
 
 variable "create_root_method" {
