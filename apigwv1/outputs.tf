@@ -83,3 +83,13 @@ output "authorizer_id" {
   description = "id of the authorizer."
   value       = try(aws_api_gateway_authorizer.this[0].id, "")
 }
+
+output "child_resource_ids" {
+  description = "Map of child resource IDs created via create_child_resource"
+  value       = { for k, v in aws_api_gateway_resource.child_resource : k => v.id }
+}
+
+output "api_resource_ids" {
+  description = "Map of API resource IDs created via create_api"
+  value       = { for k, v in aws_api_gateway_resource.api_resources : k => v.id }
+}

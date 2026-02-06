@@ -92,3 +92,13 @@ output "authorizer_id" {
   description = "id of the authorizer."
   value       = module.apigv1.authorizer_id
 }
+
+output "child_resource_ids" {
+  description = "Map of child resource IDs"
+  value       = module.apigv1.child_resource_ids
+}
+
+output "api_resource_ids" {
+  description = "Map of API resource IDs"
+  value       = module.apigv1.api_resource_ids
+}
