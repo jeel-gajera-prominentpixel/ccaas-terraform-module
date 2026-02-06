@@ -30,6 +30,7 @@ resource "aws_api_gateway_integration" "root_lambda_integration" {
   type                    = var.root_integration_type
   uri                     = var.root_integration_type == "MOCK" ? null : "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${var.root_lambda_arn}/invocations"
   request_parameters      = var.root_integration_request_parameters
+  request_templates       = var.root_integration_type == "MOCK" ? {"application/json" = "{\"statusCode\": 200}"} : {}
 }
 resource "aws_api_gateway_resource" "api_resources" {
   for_each = var.create_api ? {
@@ -89,6 +90,7 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   type                    = var.resource_paths[each.key].type
   uri                     = var.resource_paths[each.key].type == "MOCK" ? null : "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${var.resource_paths[each.key].lambda_arn}/invocations"
   request_parameters      = var.resource_paths[each.key].integration_parameters
+  request_templates = var.resource_paths[each.key].type == "MOCK" ? {"application/json" = "{\"statusCode\": 200}"} : {}
 }
 
 resource "aws_api_gateway_deployment" "this" {
