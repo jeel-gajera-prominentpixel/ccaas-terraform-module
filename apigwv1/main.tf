@@ -91,11 +91,11 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   rest_api_id             = var.rest_api_id
   resource_id             = var.resource_paths[each.key].resource_id
   http_method             = each.value.http_method
-  integration_http_method = var.resource_paths[each.key].integration_http_method
+  integration_http_method = var.resource_paths[each.key].type == "MOCK" ? null : var.resource_paths[each.key].integration_http_method  # <-- FIX: null for MOCK
   type                    = var.resource_paths[each.key].type
   uri                     = var.resource_paths[each.key].type == "MOCK" ? null : "arn:aws:apigateway:${data.aws_region.current.name}:lambda:path/2015-03-31/functions/${var.resource_paths[each.key].lambda_arn}/invocations"
   request_parameters      = var.resource_paths[each.key].integration_parameters
-  request_templates = var.resource_paths[each.key].type == "MOCK" ? {"application/json" = "{\"statusCode\": 200}"} : {}
+  request_templates       = var.resource_paths[each.key].type == "MOCK" ? {"application/json" = "{\"statusCode\": 200}"} : {}
 
   lifecycle {
     create_before_destroy = true
