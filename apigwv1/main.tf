@@ -141,8 +141,8 @@ resource "aws_api_gateway_stage" "this" {
 }
 
 resource "aws_api_gateway_method_settings" "this" {
-  count       = var.enable_logs ? 1 : 0
-  rest_api_id = aws_api_gateway_rest_api.this[0].id
+  count       = var.enable_logs && var.create_method ? 1 : 0
+  rest_api_id = var.create_api ? aws_api_gateway_rest_api.this[0].id : var.rest_api_id  # ✅ Fix
   stage_name  = aws_api_gateway_stage.this[0].stage_name
   method_path = "*/*"
   settings {
@@ -152,6 +152,7 @@ resource "aws_api_gateway_method_settings" "this" {
   }
 }
 
+
 resource "aws_wafv2_web_acl_association" "resource_association" {
   count        = var.enable_waf_association ? 1 : 0
   resource_arn = aws_api_gateway_stage.this[0].arn
@@ -159,18 +160,18 @@ resource "aws_wafv2_web_acl_association" "resource_association" {
 }
 
 resource "aws_api_gateway_account" "this" {
-  count               = var.enable_logs ? 1 : 0
+  count               = var.enable_logs && var.create_method ? 1 : 0
   cloudwatch_role_arn = aws_iam_role.api_gateway_logs_role[0].arn
 }
 
 resource "aws_iam_role" "api_gateway_logs_role" {
-  count              = var.enable_logs ? 1 : 0
-  name               = format("api-gateway-%s-logs-role", aws_api_gateway_rest_api.this[0].id)
+  count              = var.enable_logs && var.create_method ? 1 : 0
+  name               = format("api-gateway-%s-logs-role", var.create_api ? aws_api_gateway_rest_api.this[0].id : var.rest_api_id)  # ✅ Fix
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
 resource "aws_iam_role_policy" "api_gateway_logs_policy" {
-  count  = var.enable_logs ? 1 : 0
+  count  = var.enable_logs && var.create_method ? 1 : 0
   name   = "default"
   role   = aws_iam_role.api_gateway_logs_role[0].id
   policy = data.aws_iam_policy_document.cloudwatch.json
