@@ -150,6 +150,10 @@ resource "aws_api_gateway_method_settings" "this" {
     data_trace_enabled = true
     metrics_enabled    = true
   }
+  depends_on = [
+    aws_api_gateway_account.this,
+    aws_api_gateway_stage.this
+  ]
 }
 
 
@@ -162,6 +166,9 @@ resource "aws_wafv2_web_acl_association" "resource_association" {
 resource "aws_api_gateway_account" "this" {
   count               = var.enable_logs && var.create_method ? 1 : 0
   cloudwatch_role_arn = aws_iam_role.api_gateway_logs_role[0].arn
+  depends_on = [
+    aws_iam_role_policy.api_gateway_logs_policy
+  ]
 }
 
 resource "aws_iam_role" "api_gateway_logs_role" {
