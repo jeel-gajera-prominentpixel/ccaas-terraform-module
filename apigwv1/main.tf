@@ -13,12 +13,15 @@ resource "aws_api_gateway_rest_api" "this" {
 }
 
 resource "aws_api_gateway_method" "root_method" {
-  count              = var.create_root_method ? 1 : 0
+  for_each = {
+    for path, res in var.resource_paths :
+    path => res if lookup(res, "create_root_method", true)
+  }
   rest_api_id        = aws_api_gateway_rest_api.this[0].id
-  resource_id        = aws_api_gateway_rest_api.this[0].root_resource_id
-  http_method        = var.resource_root_path
-  authorization      = var.authorization
-  request_parameters = var.root_resource_request_parameters
+  resource_id        = each.value.resource_id
+  http_method        = each.value.http_method
+  authorization      = lookup(each.value, "authorization", var.authorization)
+  request_parameters = each.value.request_parameters
 }
 
 resource "aws_api_gateway_integration" "root_lambda_integration" {
