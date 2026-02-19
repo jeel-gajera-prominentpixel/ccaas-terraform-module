@@ -73,10 +73,11 @@ resource "aws_dynamodb_table" "this" {
     for_each = var.replica_regions
 
     content {
-      region_name            = replica.value.region_name
-      kms_key_arn            = lookup(replica.value, "kms_key_arn", null)
-      propagate_tags         = lookup(replica.value, "propagate_tags", null)
-      point_in_time_recovery = lookup(replica.value, "point_in_time_recovery", null)
+      region_name                 = replica.value.region_name
+      kms_key_arn                 = lookup(replica.value, "kms_key_arn", null)
+      propagate_tags              = lookup(replica.value, "propagate_tags", null)
+      point_in_time_recovery      = lookup(replica.value, "point_in_time_recovery", null)
+      deletion_protection_enabled = lookup(replica.value, "deletion_protection_enabled", null)
     }
   }
 
