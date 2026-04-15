@@ -1,7 +1,5 @@
 # To retrieve the client-consumer project path from GitLab's $CI_PROJECT_PATH
-data "external" "env" {
-  program = ["${path.module}/scripts/env.sh"]
-}
+
 
 locals {
   amazon_connect_name     = format("%s-connect-%s-%s", var.company_prefix, var.region_prefix, var.env)
