@@ -9,7 +9,6 @@ locals {
   tags = merge(
     var.tags,
     {
-      project_path = data.external.env.result["project_path"]
       company      = var.company_prefix
       region       = var.region_prefix
       env          = var.env
